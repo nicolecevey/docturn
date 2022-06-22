@@ -1,0 +1,13 @@
+.hero {
+    background-color: #434BE7;
+    height: 30rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 5rem 1rem 2rem;
+
+    &__icon {
+        width: 20rem;
+        height: 20rem;
+    }
+}
