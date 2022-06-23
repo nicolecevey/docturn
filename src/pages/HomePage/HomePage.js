@@ -1,4 +1,5 @@
 import HomeHero from "../../components/HomeHero/HomeHero";
+import LoginForm from "../../components/LoginForm/LoginForm";
 import "./HomePage.scss";
 
 function HomePage() {
@@ -6,6 +7,7 @@ function HomePage() {
     return (
         <>
             <HomeHero/>
+            <LoginForm/>
         </>
     )
 }

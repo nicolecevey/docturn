@@ -4,24 +4,26 @@
     height: 6rem;
     background-color: #69a4f6ba;
     justify-content: space-between;
-    // position: fixed;
-    // width: 100%;
-    // z-index: 999;
+    position: fixed;
+    width: 100%;
+    z-index: 999;
 
     &__logo {
         margin-top: 1rem;
     }
 
     &__link {
-        color: #434BE7;
+        color: #3942de;
         font-weight: 400;
+        padding-right: 2rem;
 
         &:hover {
-            color: #1a24e4;
+            color: #0812de;
         }
     }
 
     &__links {
         padding-right: 5rem;
+        display: flex;
     }
 }

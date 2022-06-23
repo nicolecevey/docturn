@@ -8,7 +8,7 @@ function HomeHero() {
                 src={documentIcon}
                 className="hero__icon"
             ></img>
-            <p>Description</p>
+            <p className="hero__desc">DocTurn is a document version control management application for busy business professionals.</p>
         </main>
     )
 }

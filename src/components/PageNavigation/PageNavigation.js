@@ -12,6 +12,9 @@ function PageNavigation() {
             ></img>
             <div className="nav__links">
                 <NavLink to={"/"}>
+                    <p className="nav__link">Signup</p>
+                </NavLink>
+                <NavLink to={"/"}>
                     <p className="nav__link">Login</p>
                 </NavLink>
             </div>

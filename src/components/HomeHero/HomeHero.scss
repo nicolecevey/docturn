@@ -1,13 +1,20 @@
 .hero {
-    background-color: #434BE7;
-    height: 30rem;
+    background: linear-gradient(#434BE7, #545ce7);
+    height: 36rem;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 1rem 5rem 1rem 2rem;
+    justify-content: center;
+    padding: 5rem 6rem 1rem 5rem;
 
     &__icon {
         width: 20rem;
         height: 20rem;
+        margin-right: 6rem;
+    }
+
+    &__desc {
+        color: white;
+        font-size: 1.75rem;
+        line-height: 2.5rem;
     }
 }
