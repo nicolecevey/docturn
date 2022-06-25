@@ -3,6 +3,7 @@ import './App.scss';
 import HomePage from "./pages/HomePage/HomePage";
 import DocumentsPage from "./pages/DocumentsPage/DocumentsPage";
 import PageNavigation from "./components/PageNavigation/PageNavigation";
+import Footer from "./components/Footer/Footer";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 
 class App extends React.Component {
@@ -16,6 +17,7 @@ class App extends React.Component {
           <Route path="/" exact component={HomePage}/>
           <Route path="/documents" component={DocumentsPage}/>
         </Switch>
+        <Footer />
       </BrowserRouter>
     );
   }

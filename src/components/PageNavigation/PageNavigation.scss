@@ -1,8 +1,10 @@
+@use "../../styles/partials/variables" as *;
+
 .nav {
     display: flex;
     align-items: center;
     height: 6rem;
-    background-color: #69a4f6ba;
+    background-color: $navbar-background-color;
     justify-content: space-between;
     position: fixed;
     width: 100%;
