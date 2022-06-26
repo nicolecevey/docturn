@@ -12,3 +12,39 @@
         @content;
     }
 }
+
+@mixin button {
+    width: 10rem;
+    border-radius: 25px;
+    font-size: 1.25rem;
+    border: none;
+    padding: .75rem;
+    background-color: #3a6adb;
+    color: white;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #3942de;
+    }
+}
+
+@mixin input {
+    width: 12rem;
+    border-radius: 8px;
+    border: 1px solid lightgray;
+    padding: .75rem;
+    background-color: rgba(211, 211, 211, 0.089);
+
+    &::placeholder {
+        font-size: 1rem;
+    }
+
+    &:active {
+        border-color: slategray;
+    }
+
+    &:focus {
+        border-color: slategray;
+        outline-color: slategray;
+    }
+}
