@@ -1,5 +1,6 @@
 import axios from "axios";
 import "./SignupForm.scss";
+import closeIcon from "../../assets/icons/close-24px.svg";
 
 function SignupForm({ onClick }) {
   // handleSignup = (e) => {
@@ -34,6 +35,12 @@ function SignupForm({ onClick }) {
   return (
     <div className="modal">
       <form className="signup-form">
+        <img 
+          src={closeIcon} 
+          alt="Icon to close modal"
+          className="signup-form__close"
+          onClick={onClick}
+        ></img>
         <h1 className="signup-form__title">Signup</h1>
         <input
           type="text"
