@@ -1,6 +1,7 @@
 import { Component } from "react";
 import axios from "axios";
 import WelcomeBanner from "../../components/WelcomeBanner/WelcomeBanner";
+import DocumentsList from "../../components/DocumentsList/DocumentsList";
 
 class DocumentsPage extends Component {
   state = {
@@ -19,8 +20,9 @@ class DocumentsPage extends Component {
         },
       })
       .then((response) => {
+        console.log(response)
         this.setState({
-          documents: response.data.documents,
+          documents: response.data,
         });
       })
       .catch(() => {
@@ -44,13 +46,7 @@ class DocumentsPage extends Component {
     return (
       <>
         <WelcomeBanner/>
-        {/* <DocumentsList/>
-        {this.state.posts.map((document) => (
-          <div>
-            <h2>{post.id}</h2> */}
-            {/* <h2>{post.title}</h2> */}
-          {/* </div> */}
-        {/* ))} */}
+        <DocumentsList documents={this.state.documents}/>
       </>
     );
   }

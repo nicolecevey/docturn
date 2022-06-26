@@ -1,0 +1,12 @@
+.documents-container {
+    min-height: 30rem;
+    margin: 4rem;
+}
+
+.documents-list {
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
