@@ -24,7 +24,6 @@ class LoginForm extends React.Component {
       this.setState({
         isLoggedIn: true
       })
-
     }).catch(() => {
       alert("Please provide the correct username and password.");
     })
@@ -37,12 +36,11 @@ class LoginForm extends React.Component {
     });
   };
 
+
   render() {
     // if (this.state.isLoggedIn) {
-    //     history.push({
-    //         pathname: "/documents",
-    //   })
-    // }
+    //     return this.history.push("/documents")
+
     return(
       <>
         <form onSubmit={this.handleLogin} className="login-form">

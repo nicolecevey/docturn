@@ -5,11 +5,13 @@ import { NavLink } from "react-router-dom";
 function PageNavigation() {
     return (
         <nav className="nav">
-            <img 
-                src={logo} 
-                alt="DocTurn logo with document icon"
-                className="nav__logo"
-            ></img>
+            <NavLink to="/">
+                <img 
+                    src={logo} 
+                    alt="DocTurn logo with document icon"
+                    className="nav__logo"
+                ></img>
+            </NavLink>
             <div className="nav__links">
                 <NavLink to={"/"}>
                     <p className="nav__link">Signup</p>

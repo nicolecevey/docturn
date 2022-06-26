@@ -1,5 +1,6 @@
 import DocumentCard from "../DocumentCard/DocumentCard";
 import "./DocumentsList.scss";
+import { Link } from "react-router-dom";
 
 function DocumentsList({ documents }) {
   console.log(documents);
@@ -7,6 +8,12 @@ function DocumentsList({ documents }) {
   return (
     <>
       <section className="documents-container">
+        <Link 
+          to="/documents/add"
+          className="documents-container__link"
+          >
+            <button className="documents-container__button">+ Add new document</button>
+        </Link>
         <ul className="documents-list">
           {documents.map(
             ({
