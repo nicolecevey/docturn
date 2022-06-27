@@ -14,8 +14,12 @@
         color: $primary-font-color;
     }
 
-    &__button {
+    &__back-button, &__add-button {
         @include button;
+    }
+
+    &__add-button {
+        margin: 3rem 0 0 -7rem;
     }
 
     &__link {
@@ -32,7 +36,7 @@
         display: flex;
         border: 1px solid rgb(156, 161, 166);
         // background-color: rgba(156, 161, 166, 0.062);
-        padding:  4rem 4rem 4rem 2rem;
+        padding:  3rem 4rem 3rem 2rem;
         border-radius: 5px;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
