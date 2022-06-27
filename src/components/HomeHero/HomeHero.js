@@ -1,5 +1,5 @@
 import "./HomeHero.scss";
-import documentIcon from "../../assets/document-512.png";
+import documentIcon from "../../assets/document-512-white.png";
 
 function HomeHero() {
     return (
