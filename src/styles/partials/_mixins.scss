@@ -49,3 +49,9 @@
         outline-color: slategray;
     }
 }
+
+@mixin label {
+    font-size: 1.125rem;
+    margin-top: 1rem;
+    font-weight: 700;
+}

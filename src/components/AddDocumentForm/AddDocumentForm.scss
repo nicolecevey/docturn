@@ -11,6 +11,7 @@
     &__title {
         font-size: 3rem;
         margin: 2rem 0;
+        color: $primary-font-color;
     }
 
     &__button {
@@ -24,13 +25,14 @@
     &__icon {
         height: 20rem;
         width: 20rem;
+        opacity: 80%;
     }
 
     &__container {
         display: flex;
-        border: 2px solid rgb(156, 161, 166);
+        border: 1px solid rgb(156, 161, 166);
         // background-color: rgba(156, 161, 166, 0.062);
-        padding:  4rem 2rem;
+        padding:  4rem 4rem 4rem 2rem;
         border-radius: 5px;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
@@ -38,10 +40,26 @@
     &__form {
         display: flex;
         flex-direction: column;
-        margin-top: 3rem;
     }
 
     &__input {
         @include input;
+        padding: .5rem;
+        margin-top: .25rem;
+    }
+
+    &__label {
+        display: flex;
+        flex-direction: column;
+        @include label;
+
+        &--title {
+            margin-top: 0;
+        }
+    }
+
+    &__radio {
+        margin: 0 .5rem;
+        margin-top: .25rem;
     }
 }
