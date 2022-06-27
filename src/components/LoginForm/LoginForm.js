@@ -38,8 +38,9 @@ class LoginForm extends React.Component {
 
 
   render() {
-    // if (this.state.isLoggedIn) {
-    //     return this.history.push("/documents")
+    if (this.state.isLoggedIn) {
+      window.location.assign("/documents")
+    }
 
     return(
       <>
@@ -58,11 +59,9 @@ class LoginForm extends React.Component {
           </div>
         </form>
         {this.state.isModalOpen && (
-          <SignupForm onClick={this.toggleModal}/>
+          <SignupForm/>
         )}
       </>
-
-
     )
   }
 }
