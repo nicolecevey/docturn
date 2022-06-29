@@ -2,7 +2,6 @@ import "./AddDocumentForm.scss";
 import documentIcon from "../../assets/document-512.png";
 import { Link } from "react-router-dom";
 import { addDoc, collection, getFirestore}  from "firebase/firestore";
-import { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 function AddDocumentForm() {
