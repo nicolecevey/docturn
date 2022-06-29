@@ -3,20 +3,33 @@ import "./DocumentsList.scss";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { db } from "../../firebase";
+import { onSnapshot, collection, query, orderBy } from "firebase/firestore";
 
 function DocumentsList() {
 
   const [documents, setDocuments] = useState([])
 
+  // useEffect(() => {
+  //   let documentsData = [];
+  //   db.collection("documents").orderBy("dateLastReviewed").get().then((snapshot) => {
+  //     snapshot.docs.forEach((doc) => {
+  //       documentsData.push(...doc.data(), i:)
+  //     })
+  //     setDocuments(documentsData.reverse())
+  //   })
+  // }, []);
+
   useEffect(() => {
-    let documentsData = [];
-    db.collection("documents").orderBy("dateLastReviewed").get().then((snapshot) => {
-      snapshot.docs.forEach((doc) => {
-        documentsData.push(doc.data())
-        console.log(doc.id)
-      })
-      setDocuments(documentsData.reverse())
-    })
+    const colRef = collection(db, "documents");
+    const q = query(colRef);
+    onSnapshot(q, (snapshot) => {
+      setDocuments(
+        snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
+    });
   }, []);
 
   return (
@@ -33,7 +46,7 @@ function DocumentsList() {
               return (
                 <li key={doc.id}>
                   <DocumentCard
-                    key={doc.id}
+                    id={doc.id}
                     title={doc.title}
                     status={doc.status}
                     lastReviewed={doc.dateLastReviewed}

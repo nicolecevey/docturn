@@ -1,7 +1,7 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 
-.add-form {
+.edit-form {
     padding: 9rem 2rem 4rem 2rem;
     height: 100%;
     display: flex;
@@ -14,11 +14,11 @@
         color: $primary-font-color;
     }
 
-    &__back-button, &__add-button {
+    &__back-button, &__edit-button {
         @include button;
     }
 
-    &__add-button {
+    &__edit-button {
         margin: 3rem 0 0 -7rem;
     }
 

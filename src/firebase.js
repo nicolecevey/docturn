@@ -1,6 +1,9 @@
 import firebase from "firebase/compat/app"
 import "firebase/compat/auth"
 import "firebase/compat/firestore"
+import {
+  collection
+} from 'firebase/firestore'
 
 const app = firebase.initializeApp ({
     apiKey: "AIzaSyB0giU0vr_kaswf_9ES8vDom0cC7N5mC4Y",
