@@ -1,17 +1,23 @@
 import DocumentCard from "../DocumentCard/DocumentCard";
 import "./DocumentsList.scss";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { db } from "../../firebase";
 
 function DocumentsList() {
 
-  let arrDocs = [];
+  const [documents, setDocuments] = useState([])
 
-  db.collection("documents").get().then((snapshot) => {
-    snapshot.docs.forEach(doc => {
-      arrDocs.push(doc.data())
+  useEffect(() => {
+    let documentsData = [];
+    db.collection("documents").get().then((snapshot) => {
+      snapshot.docs.forEach(doc => {
+        documentsData.push(doc.data())
+      })
+      setDocuments(documentsData)
+      console.log(documents)
     })
-  })
+  }, []);
   // let docs = docs.push(documents)
 
   return (
@@ -24,10 +30,11 @@ function DocumentsList() {
             <button className="documents-container__button">+ Add new document</button>
         </Link>
         <ul className="documents-list">
-          {arrDocs.forEach(doc => {
+          {documents.map(doc => {
               return (
                 <li key={doc.id}>
                   <DocumentCard
+                    key={doc.id}
                     title={doc.title}
                     status={doc.status}
                     lastReviewed={doc.dateLastReviewed}
