@@ -3,8 +3,6 @@ import "./DocumentsList.scss";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { db } from "../../firebase";
-import { orderBy } from "firebase/firestore";
-
 
 function DocumentsList() {
 
@@ -15,9 +13,9 @@ function DocumentsList() {
     db.collection("documents").orderBy("dateLastReviewed").get().then((snapshot) => {
       snapshot.docs.forEach((doc) => {
         documentsData.push(doc.data())
+        console.log(doc.id)
       })
       setDocuments(documentsData.reverse())
-      console.log(documents)
     })
   }, []);
 
@@ -33,9 +31,9 @@ function DocumentsList() {
         <ul className="documents-list">
           {documents.map(doc => {
               return (
-                <li key={doc.key}>
+                <li key={doc.id}>
                   <DocumentCard
-                    key={doc.key}
+                    key={doc.id}
                     title={doc.title}
                     status={doc.status}
                     lastReviewed={doc.dateLastReviewed}

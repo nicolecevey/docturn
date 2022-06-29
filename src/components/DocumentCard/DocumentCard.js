@@ -1,7 +1,7 @@
 import "./DocumentCard.scss";
 import documentIcon from "../../assets/document-128.png";
 
-function DocumentCard({id, title, status, toReview, reviewerName, lastReviewed, version}) {
+function DocumentCard({key, title, status, toReview, reviewerName, lastReviewed, version}) {
 
     function timestampToDate(timestamp) {
         let date = new Date(timestamp);
@@ -15,7 +15,7 @@ function DocumentCard({id, title, status, toReview, reviewerName, lastReviewed, 
     return (
         <article 
             className="document-card"
-            key={id}
+            key={key}
         >
             <img 
                 src={documentIcon}
