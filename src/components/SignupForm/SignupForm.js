@@ -1,35 +1,31 @@
-import axios from "axios";
 import "./SignupForm.scss";
 import closeIcon from "../../assets/icons/close-24px.svg";
-import React from "react";
+import React, { useState } from "react";
+import { useAuth } from "../../Contexts/AuthContext"
 
-class SignupForm extends React.Component {
+function SignupForm(props) {
+  const {onClick} = props;
+  const {signup} = useAuth()
+  const [error, setError] = useState('')
+  const [ loading, setLoading ] = useState(false)
+  // const history = useHistory()
 
-  state = {
-    isSignedUp: !sessionStorage.authToken,
-    isModalOpen: false,
-  };
-
-  handleSignup = (e) => {
+  async function handleSignup(e) {
     e.preventDefault();
+    console.log(e.target.email.value)
+    if(!e.target.email.value || !e.target.password.value) {
+      return setError("Please enter all fields.")
+    }
 
-    axios
-      .post("http://localhost:8080/signup", {
-        username: e.target.username.value,
-        password: e.target.password.value,
-      })
-      .then(({ data }) => {
-        console.log(data);
-        // SUCCESS: store token in sessionStorage, isLoggedIn = true
-        sessionStorage.authToken = data.token;
-        this.setState({
-          // isSignedUp: true,
-        });
-      })
-      .catch(() => {
-        alert("Signup failed");
-      });
-    return false;
+    try {
+      setError("")
+      setLoading(true)
+      await signup(e.target.email.value, e.target.password.value)
+    } catch {
+      setError("Failed to signup.")
+    }
+    setLoading(false)
+
   };
 
   // onSubmitHandler = (endpoint) => {
@@ -40,28 +36,23 @@ class SignupForm extends React.Component {
   //   console.log(endpoint);
   // };
 
-  toggleModal = (event) => {
-    this.setState({
-      isModalOpen: !this.state.isModalOpen,
-    });
-  };
 
-  render() {
     return (
       <div className="modal">
-        <form className="signup-form" onSubmit={this.handleSignup}>
+        {error && <p>You shall not pass</p>}
+        <form className="signup-form" onSubmit={handleSignup}>
           <img
             src={closeIcon}
             alt="Icon to close modal"
             className="signup-form__close"
-            onClick={(event) => this.toggleModal(event)}
+            onClick={() => onClick()}
             ></img>
           <h1 className="signup-form__title">Signup</h1>
           <input
             type="text"
             className="signup-form__input"
-            placeholder="Username"
-            name="username"
+            placeholder="Email"
+            name="email"
           ></input>
           <input
             type="text"
@@ -77,7 +68,8 @@ class SignupForm extends React.Component {
             <button
               type="button"
               className="signup-form__link"
-              onClick={(event) => this.toggleModal(event)}
+              // onClick={() => this.toggleModal}
+              disabled={loading}
             >
               Login
             </button>
@@ -86,7 +78,7 @@ class SignupForm extends React.Component {
       </div>
     );
   }
-}
+
 
 export default SignupForm;
 

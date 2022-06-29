@@ -1,50 +1,39 @@
 import "./LoginForm.scss";
-import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
+import { useAuth } from "../../Contexts/AuthContext"
 import SignupForm from "../SignupForm/SignupForm";
 
-class LoginForm extends React.Component {
 
-  state = {
-    isLoggedIn: !sessionStorage.authToken,
-    isModalOpen: false,
-  }
+function LoginForm() {
+  const {login} = useAuth()
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [error, setError] = useState('')
+  const [ loading, setLoading ] = useState(false)
+  // const history = useHistory()
 
-  handleLogin = (e) => {
+   async function handleLogin(e) {
     e.preventDefault();
-
-    axios.post("http://localhost:8080/login", {
-      username: e.target.username.value ,
-      password: e.target.password.value
-    })
-    .then(({ data }) => {
-      console.log(data)
-      // SUCCESS: store token in sessionStorage, isLoggedIn = true
-      sessionStorage.authToken = data.token;
-      this.setState({
-        isLoggedIn: true
-      })
-    }).catch(() => {
-      alert("Please provide the correct username and password.");
-    })
-    return false;
-  }
-
-  toggleModal = (event) => {
-    this.setState({
-      isModalOpen: !this.state.isModalOpen,
-    });
-  };
-
-
-  render() {
-    if (this.state.isLoggedIn) {
-      window.location.assign("/documents")
+    console.log(e.target.email.value)
+    if(!e.target.email.value || !e.target.password.value) {
+      return setError("Please enter all fields.")
     }
 
-    return(
+    try {
+      setError("")
+      setLoading(true)
+      await login(e.target.email.value, e.target.password.value)
+    } catch {
+      setError("Failed to sign in.")
+    }
+    setLoading(false)
+  };
+
+  const toggleModal = (event) => {
+    setIsModalOpen(!isModalOpen);
+  }
+    return (
       <>
-        <form onSubmit={this.handleLogin} className="login-form">
+        <form onSubmit={handleLogin} className="login-form">
           <h1 className="login-form__title">Login</h1>
           <input type="text" className="login-form__input" placeholder="Username" name="username"></input>
           <input type="text" className="login-form__input" placeholder="Password" name="password"></input>
@@ -54,16 +43,15 @@ class LoginForm extends React.Component {
               <button
               type="button" 
               className="login-form__link"
-              onClick={((event) => this.toggleModal(event))}
+              onClick={() => setIsModalOpen(true)}
               >Sign Up</button>
           </div>
         </form>
-        {this.state.isModalOpen && (
-          <SignupForm/>
+        {isModalOpen && (
+          <SignupForm onClick={toggleModal}/>
         )}
       </>
     )
-  }
 }
 
 export default LoginForm;
