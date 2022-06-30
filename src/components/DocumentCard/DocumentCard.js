@@ -40,11 +40,11 @@ function DocumentCard({
         ></img>
         <div className="document-card__details">
           <h4>{title}</h4>
-          <p>Status: {status.data === 1 ? "Open" : "Closed"}</p>
+          <p>Status: {status}</p>
           <p>Version: {version}.0</p>
-          <p>To review: {toReview.data === 1 ? "Yes" : "No"}</p>
-          <p>{reviewerName}</p>
-          <p>{timestampToDate(lastReviewed)}</p>
+          <p>To review: {toReview ? "Yes" : "No"}</p>
+          <p>{reviewerName ? `Reviewer name: ${reviewerName}` : "No current reviewer"}</p>
+          <p>Date last reviewed: {timestampToDate(lastReviewed)}</p>
         </div>
       </div>
       <div className="document-card__actions">

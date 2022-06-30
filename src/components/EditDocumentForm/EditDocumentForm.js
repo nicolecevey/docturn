@@ -3,16 +3,25 @@ import documentIcon from "../../assets/document-512.png";
 import { Link } from "react-router-dom";
 import { updateDoc, doc, getFirestore }  from "firebase/firestore";
 import { useHistory, useParams } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { db } from "../../firebase";
 
 function EditDocumentForm() {
   let history = useHistory()
   const { id } = useParams()
+  const [error, setError] = useState('');
   const [document, setDocument] = useState([])
 
-  db.collection('documents').doc(id).get()
-        .then(snapshot => setDocument(snapshot.data()))
+  useEffect((id) => {
+    try {
+      db.collection('documents').doc(id).get()
+      .then(snapshot => setDocument(snapshot.data()))
+    } catch (error) {
+      const { code, message } = error;
+      setError(message);
+        console.log(error);
+    }
+  }, [document]);
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -25,7 +34,6 @@ function EditDocumentForm() {
       version: event.target.version.value,
       toReview: event.target.toReview.value,
       reviewerName: event.target.reviewerName.value,
-      version: event.target.version.value,
       dateLastReviewed: event.target.dateLastReviewed.value
     })
     history.push("/documents")
@@ -38,7 +46,7 @@ function EditDocumentForm() {
       </Link>
       <h1 className="edit-form__title">Edit Document</h1>
       <div className="edit-form__container">
-        <img src={documentIcon} className="edit-form__icon"></img>
+        <img src={documentIcon} className="edit-form__icon" alt="Icon of document"></img>
         <form className="edit-form__form" onSubmit={submitHandler}>
           <label className="edit-form__label edit-form__label--title">
             Document Title:
@@ -56,7 +64,7 @@ function EditDocumentForm() {
               name="status"
               value="open"
               className="edit-form__radio"
-              defaultChecked={(document.status === "Open" || "open") ? true: false}
+              defaultChecked={document.status}
             ></input>{" "}
             Open
             <input
@@ -64,7 +72,7 @@ function EditDocumentForm() {
               name="status"
               value="closed"
               className="edit-form__radio"
-              defaultChecked={(document.status === "Open" || "open") ? true: false}
+              defaultChecked={!document.status}
             ></input>{" "}
             Closed
           </label>
@@ -75,7 +83,7 @@ function EditDocumentForm() {
               type="number" 
               name="version"
               placeholder={document.version}
-            ></input>
+            ></input>{" "}
           </label>
           <p className="edit-form__label">Waiting for your review:</p>
           <label className="edit-form__radio-label">
@@ -92,7 +100,7 @@ function EditDocumentForm() {
               name="toReview"
               value="no"
               className="edit-form__radio"
-              defaultChecked={document.toReview}
+              defaultChecked={!document.toReview}
             ></input>{" "}
             No
           </label>
@@ -103,7 +111,7 @@ function EditDocumentForm() {
               className="edit-form__input"
               name="reviewerName"
               placeholder={document.reviewerName === undefined ? "No current reviewer" : document.reviewerName }
-            ></input>
+            ></input>{" "}
           </label>
           <label className="edit-form__label"> Date Last Reviewed
             <input 
@@ -111,7 +119,7 @@ function EditDocumentForm() {
               name="dateLastReviewed"
               className="edit-form__input"
               defaultValue={document.dateLastReviewed}
-            ></input>
+            ></input>{" "}
           </label>
           <button type="submit" className="edit-form__edit-button">
             Edit
