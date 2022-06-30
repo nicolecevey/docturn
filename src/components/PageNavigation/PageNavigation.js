@@ -2,9 +2,9 @@ import "./PageNavigation.scss";
 import logo from "../../assets/logo.png"
 import { NavLink } from "react-router-dom";
 
-function PageNavigation() {
+function PageNavigation({menuOpen, setMenuOpen}) {
     return (
-        <nav className="nav">
+        <nav className={"nav " + (menuOpen && "active")}>
             <NavLink to="/">
                 <h1 className="nav__logo">DocTurn</h1>
                 {/* <img 
@@ -13,10 +13,10 @@ function PageNavigation() {
                     className="nav__logo"
                 ></img> */}
             </NavLink>
-            <div className="nav__hamburger hamburger">
-                <span className="hamburger__line"></span>
-                <span className="hamburger__line"></span>
-                <span className="hamburger__line"></span>
+            <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+                <span className="hamburger--line1"></span>
+                <span className="hamburger--line2"></span>
+                <span className="hamburger--line3"></span>
             </div>
             {/* <div className="nav__links">
                 <NavLink to={"/"}>

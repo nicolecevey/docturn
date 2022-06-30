@@ -1,3 +1,5 @@
+@use "../../styles/partials/mixins" as *;
+
 .hero {
     background: linear-gradient(#434BE7, #5f1dec);
     height: 40rem;
@@ -6,14 +8,23 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-top: 6rem;
+    padding-top: 2rem;
     clip-path: polygon(0% 0%, 100% 0%,100% 80%,0% 100%);
+
+    @include tablet {
+        padding-top: 5rem;
+    }
 
 
     &__icon {
-        width: 20rem;
-        height: 20rem;
+        width: 15rem;
+        height: 15rem;
         margin-left:2rem;
+
+        @include tablet{
+            width: 20rem;
+            height: 20rem;
+        }
     }
 
     &__row {
@@ -25,14 +36,22 @@
 
     &__desc {
         color: white;
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: 100;
-        line-height: 3.5rem;
+        line-height: 3rem;
         padding-right: 2rem;
         max-width: 30rem;
+        @include tablet {
+            font-size: 2rem;
+            line-height: 3.5rem;
+        }
 
         &--bold {
-            font-size: 2.5rem;
+            font-size: 2rem;
+
+            @include tablet {
+                font-size: 2.5rem;
+            }
         }
     }
 

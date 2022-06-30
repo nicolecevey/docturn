@@ -16,7 +16,7 @@ function App() {
     return (
       <AuthProvider>
         <BrowserRouter>
-          <PageNavigation />
+          <PageNavigation menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
           <Switch>
             <Route path="/" exact component={HomePage} />
             <Route path="/documents" exact component={DocumentsPage} />
