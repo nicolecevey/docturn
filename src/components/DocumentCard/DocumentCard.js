@@ -15,21 +15,20 @@ function DocumentCard({
   lastReviewed,
   version,
 }) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const [isModalOpen, setIsModalOpen] = useState(false)
-  
-    const timestampToDate = (timestamp) => {
-        let date = new Date(timestamp);
-        return date.toLocaleDateString("en-US", {
-        month: "2-digit",
-        day: "2-digit",
-        year: "numeric",
-        });
-    }
+  const timestampToDate = (timestamp) => {
+    let date = new Date(timestamp);
+    return date.toLocaleDateString("en-US", {
+      month: "2-digit",
+      day: "2-digit",
+      year: "numeric",
+    });
+  };
 
-    const toggleModal = (event) => {
-        setIsModalOpen(!isModalOpen);
-      }
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   return (
     <article className="document-card" id={id}>
@@ -50,17 +49,17 @@ function DocumentCard({
       </div>
       <div className="document-card__actions">
         {/* <img src={editIcon} className="document-card__action-icon"></img> */}
-        <button 
-            className="document-card__button"
-            onClick={() => setIsModalOpen(true)}
-        >Delete</button>
+        <button
+          className="document-card__button"
+          onClick={() => setIsModalOpen(true)}
+        >
+          Delete
+        </button>
         <Link to={`/document/${id}/edit`}>
           <button className="document-card__button">Edit</button>
         </Link>
       </div>
-      {isModalOpen && (
-          <DeleteModal onClick={toggleModal}/>
-        )}
+      {isModalOpen && <DeleteModal onClick={toggleModal} id={id}/>}
     </article>
   );
 }
