@@ -1,5 +1,4 @@
 import "./Footer.scss";
-import logo from "../../assets/logo.png"
 import facebookIcon from "../../assets/icons/Icon-facebook.svg"
 import instagramIcon from "../../assets/icons/Icon-instagram.svg"
 import twitterIcon from "../../assets/icons/Icon-twitter.svg"
@@ -48,7 +47,7 @@ function Footer() {
                     </div>
                 </div>
                 <div className="footer__app">
-                    <h3>Donwload the app</h3>
+                    <h3 className="footer__download-title">Donwload the app</h3>
                     <div className="footer__download">
                         <img 
                             src={googleIcon} 
@@ -63,8 +62,7 @@ function Footer() {
                     </div>
                 </div>
             </div>
-            <img src={logo} className="footer__logo"></img>
-            <p className="footer__text">© 2022 DocTurn Inc.</p>
+            <p className="footer__copyright">© 2022 DocTurn Inc.</p>
         </footer>
     )
 }

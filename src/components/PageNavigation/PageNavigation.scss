@@ -4,20 +4,23 @@
     display: flex;
     align-items: center;
     height: 6rem;
+    padding: 1rem 5rem;
     background-color: $navbar-background-color;
     justify-content: space-between;
     position: fixed;
     width: 100%;
     z-index: 999;
+    color: white;
 
     &__logo {
-        margin-top: 1rem;
+        color: white;
     }
 
     &__link {
-        color: #3942de;
         font-weight: 400;
+        font-size: 1.5rem;
         padding-right: 2rem;
+        color: white;
 
         &:hover {
             color: #0812de;
@@ -25,7 +28,18 @@
     }
 
     &__links {
-        padding-right: 5rem;
+        // padding-right: 5rem;
         display: flex;
+    }
+}
+
+.hamburger {
+    width: 32px;
+    height: 25px;
+
+    &__line {
+        width: 100%;
+        height: 3px;
+        background-color: white;
     }
 }

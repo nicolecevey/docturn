@@ -1,4 +1,3 @@
-import React, {useContext} from "react";
 import "./App.scss";
 import HomePage from "./pages/HomePage/HomePage";
 import DocumentsPage from "./pages/DocumentsPage/DocumentsPage";
@@ -8,10 +7,12 @@ import AddDocumentPage from "./pages/AddDocumentPage/AddDocumentPage";
 import EditDocumentPage from "./components/EditDocumentForm/EditDocumentForm";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { AuthProvider } from "./Contexts/AuthContext";
+import { useState } from "react";
 
-class App extends React.Component {
 
-  render() {
+function App() {
+  const [menuOpen,setMenuOpen] = useState(false)
+
     return (
       <AuthProvider>
         <BrowserRouter>
@@ -28,6 +29,5 @@ class App extends React.Component {
       </AuthProvider>
     );
   }
-}
 
 export default App;
