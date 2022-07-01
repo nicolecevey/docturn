@@ -12,23 +12,23 @@ function EditDocumentForm() {
   const [error, setError] = useState('');
   const [document, setDocument] = useState([])
 
-  useEffect((id) => {
+  useEffect(() => {
     try {
       db.collection('documents').doc(id).get()
       .then(snapshot => setDocument(snapshot.data()))
     } catch (error) {
-      const { code, message } = error;
+      const { message } = error;
       setError(message);
         console.log(error);
     }
-  }, [document]);
+  }, [id]);
 
-  const submitHandler = (event) => {
+  async function editDocument(event) {
     event.preventDefault();
     const db = getFirestore();
-    const documentRef = doc(db, "documents", event.target.id.value)
+    const documentRef = doc(db, "documents", id)
 
-    updateDoc(documentRef, {
+    await updateDoc(documentRef, {
       title: event.target.title.value,
       status: event.target.status.value,
       version: event.target.version.value,
@@ -47,7 +47,7 @@ function EditDocumentForm() {
       <h1 className="edit-form__title">Edit Document</h1>
       <div className="edit-form__container">
         <img src={documentIcon} className="edit-form__icon" alt="Icon of document"></img>
-        <form className="edit-form__form" onSubmit={submitHandler}>
+        <form className="edit-form__form" onSubmit={editDocument}>
           <label className="edit-form__label edit-form__label--title">
             Document Title:
             <input 

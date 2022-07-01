@@ -1,14 +1,19 @@
+@use "../../styles/partials/mixins" as *;
+
 .welcome-banner {
-    padding: 6rem 4rem 0 4rem;
+    padding: 6rem 4rem 0 5rem;
     height: 25rem;
-    background: linear-gradient(#434BE7, #545ce7);
+    background: linear-gradient(#434BE7, #5f1dec);
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: 10rem;
+    justify-content: flex-start;
+    gap: 4rem;
+
+    @include tablet {
+        gap: 10rem;
+    }
 
     &__title {
-        width: 20rem;
         color: white;
     }
 }

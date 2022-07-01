@@ -1,8 +1,8 @@
 @use "../../styles/partials/variables" as *;
 
 .details-card {
-    width: 15rem;
-    height: 15rem;
+    width: 12rem;
+    height: 7rem;
     background-color: white;
     border-radius: 3px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
@@ -14,7 +14,6 @@
     }
 
     &__text {
-        width: 10rem;
         margin-bottom: 1rem;
     }
 }

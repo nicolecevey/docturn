@@ -35,12 +35,18 @@ function DocumentsList() {
   return (
     <>
       <section className="documents-container">
-        <Link 
-          to="/documents/add"
-          className="documents-container__link"
-          >
-            <button className="documents-container__button">+ Add new document</button>
-        </Link>
+        <div className="documents-container__header">
+          <div className="documents-container__information">
+            <p className="documents-container__text">Open: </p>
+            <p className="documents-container__text">To review: </p>
+          </div>
+          <Link 
+            to="/documents/add"
+            className="documents-container__link"
+            >
+              <button className="documents-container__button">+ Add new document</button>
+          </Link>
+        </div>
         <ul className="documents-list">
           {documents.map(doc => {
               return (
