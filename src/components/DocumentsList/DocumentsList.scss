@@ -17,16 +17,48 @@
 
     &__information {
         display: flex;
-        gap: 2rem;
+        justify-content: center;
+        width: 18rem;
+        border-radius: 25px;
+        font-size: 1.25rem;
+        border: none;
+        padding: .75rem;
+        background-color: #3a6adb;
+        color: white;
+    } 
+    
+    &__text {
+        cursor: pointer;
+        &--left {
+            margin-right: 1rem;
+        }
     }
 
     &__button {
+        display: flex;
+        justify-content: center;
         @include button;
-        width: 15rem;
+        width: 3rem;
+
+        @include tablet {
+            width: 15rem;
+        }
+
+        &--tablet {
+            display: none;
+
+            @include tablet {
+                display: flex;
+            }
+        }
     }
 
     &__link {
         align-self: flex-end;
+    }
+
+    span {
+        margin-left: 1rem;
     }
 }
 
