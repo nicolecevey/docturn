@@ -29,7 +29,7 @@ function LoginForm() {
     setLoading(false)
   };
 
-  const toggleModal = (event) => {
+  const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   }
     return (
