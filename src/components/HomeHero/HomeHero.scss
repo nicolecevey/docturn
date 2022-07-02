@@ -15,51 +15,13 @@
         padding-top: 5rem;
     }
 
-
-    &__icon {
-        width: 15rem;
-        height: 15rem;
-        margin-left:2rem;
-
-        @include tablet{
-            width: 20rem;
-            height: 20rem;
-        }
-    }
-
-    &__row {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 2rem;
-    }
-
-    &__desc {
+    &__tagline {
+        padding: 5rem;
+        text-align: center;
+        margin-top: -5rem;
         color: white;
-        font-size: 1.5rem;
         font-weight: 100;
+        font-size: 3rem;
         line-height: 3rem;
-        padding-right: 2rem;
-        max-width: 30rem;
-        @include tablet {
-            font-size: 2rem;
-            line-height: 3.5rem;
-        }
-
-        &--bold {
-            font-size: 2rem;
-
-            @include tablet {
-                font-size: 2.5rem;
-            }
-        }
     }
-
-    &__triangle-container {
-        width: 500rem;
-    }
-
-    // &__triangle {
-    //     width: 100rem;
-    // }
 }
