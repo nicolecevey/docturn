@@ -1,0 +1,62 @@
+@use "../../styles/partials/variables" as *;
+
+.sidebar {
+    width: 18.75rem;
+    height: 100vh;
+    font-size: 2rem;
+    font-weight: 100;
+    position: fixed;
+    top: 0;
+    right: -18.75rem;
+    z-index: 997;
+    background-color: #565de7;
+    display: flex;
+    flex-direction: column;
+    transition: all 1s ease;
+
+    &.active {
+        right: 0;
+    }
+
+    &__links {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        list-style: none;
+        margin-top: 11rem;
+        margin-left: 3rem;
+    }
+
+    &__list-item {
+        margin-bottom: 2rem;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        cursor: pointer;
+
+        &:hover {
+            font-weight: 500;
+        }
+    }
+
+    &__logout {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+        margin-left: 3rem;
+
+        &:hover {
+            font-weight: 500;
+        }
+    }
+
+    &__link {
+        font-size: inherit;
+        color: white;
+
+        &--logout {
+            cursor: pointer;
+            margin-left: 1rem;
+        }
+    }
+}

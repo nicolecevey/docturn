@@ -1,35 +1,20 @@
 @use "../../styles/partials/variables" as *;
 
-.nav {
+.navbar {
     display: flex;
     align-items: center;
     height: 6rem;
-    padding: 1rem 5rem;
+    padding: 1rem 2rem;
     background-color: $navbar-background-color;
     justify-content: space-between;
     position: fixed;
-    width: 90%;
+    width: 100%;
     z-index: 998;
     color: white;
+    overflow: hidden;
 
     &__logo {
         color: white;
-    }
-
-    &__link {
-        font-weight: 400;
-        font-size: 1.5rem;
-        padding-right: 2rem;
-        color: white;
-
-        &:hover {
-            color: #0812de;
-        }
-    }
-
-    &__links {
-        // padding-right: 5rem;
-        display: flex;
     }
 
     .hamburger {
@@ -37,8 +22,8 @@
         flex-direction: column;
         justify-content: space-between;
         width: 32px;
-        height: 25px;
-        padding-right: 5rem;
+        height: 27px;
+        margin-right: 5rem;
         cursor: pointer;
     
         span {

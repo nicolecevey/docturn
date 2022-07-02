@@ -8,6 +8,7 @@ import EditDocumentPage from "./components/EditDocumentForm/EditDocumentForm";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { AuthProvider } from "./Contexts/AuthContext";
 import { useState } from "react";
+import SideBar from "./components/SideBar/SideBar";
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <PageNavigation menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
+          <SideBar menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
           <Switch>
             <Route path="/" exact component={HomePage} />
             <Route path="/documents" exact component={DocumentsPage} />
