@@ -22,27 +22,14 @@
 
 .signup-form {
     background-color: white;
-    height: 100%;
-    width: 100%;
-    padding: 10rem 4rem 0 2rem;
+    width: 25rem;
+    height: 28rem;
+    padding: 1rem;
     z-index: 1000;
     display: flex;
     align-items: center;
     flex-direction: column;
     border-radius: 4px;
-
-
-    @include tablet {
-      position: absolute;
-      padding: 1rem;
-      width: 25rem;
-      height: 28rem;
-    }
-
-    @include desktop {
-      width: 25rem;
-      height: 28rem;
-    }
 
     &__close {
         align-self: flex-end;

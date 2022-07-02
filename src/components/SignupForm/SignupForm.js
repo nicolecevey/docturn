@@ -8,34 +8,22 @@ function SignupForm(props) {
   const {signup} = useAuth()
   const [error, setError] = useState('')
   const [ loading, setLoading ] = useState(false)
-  // const history = useHistory()
 
-  async function handleSignup(e) {
-    e.preventDefault();
-    console.log(e.target.email.value)
-    if(!e.target.email.value || !e.target.password.value) {
+  async function handleSignup(event) {
+    event.preventDefault();
+    console.log(event.target.email.value)
+    if(!event.target.email.value || !event.target.password.value) {
       return setError("Please enter all fields.")
     }
-
     try {
       setError("")
       setLoading(true)
-      await signup(e.target.email.value, e.target.password.value)
+      await signup(event.target.email.value, event.target.password.value)
     } catch {
       setError("Failed to signup.")
     }
     setLoading(false)
-
   };
-
-  // onSubmitHandler = (endpoint) => {
-  //   axios.post(endpoint);
-  //   this.setState({
-  //     isModalOpen: !this.state.isModalOpen,
-  //   });
-  //   console.log(endpoint);
-  // };
-
 
     return (
       <div className="modal">
@@ -68,7 +56,6 @@ function SignupForm(props) {
             <button
               type="button"
               className="signup-form__link"
-              // onClick={() => this.toggleModal}
               disabled={loading}
             >
               Login
