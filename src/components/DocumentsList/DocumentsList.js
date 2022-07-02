@@ -14,12 +14,13 @@ import sortIcon from "../../assets/icons/sort-24px.svg";
 
 function DocumentsList() {
   const [documents, setDocuments] = useState([]);
-  const [filter, setFilter] = useState(false);
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [filterReview, setFilterReview] = useState(false);
 
   useEffect(() => {
     const colRef = collection(db, "documents");
 
-    if(filter === false) {
+    if(filterOpen === false && filterReview === false) {
       const q = query(colRef, orderBy("dateLastReviewed", "desc"));
       onSnapshot(q, (snapshot) => {
         setDocuments(
@@ -29,7 +30,7 @@ function DocumentsList() {
           }))
         );
       });
-    } else {
+    } else if (filterOpen) {
       const q = query(colRef,where("status", "==", "open"),orderBy("dateLastReviewed", "desc"));
       onSnapshot(q, (snapshot) => {
         setDocuments(
@@ -39,8 +40,18 @@ function DocumentsList() {
           }))
         );
       });
+    } else if (filterReview) {
+      const q = query(colRef,where("toReview", "==", "yes"), orderBy("dateLastReviewed", "desc"));
+      onSnapshot(q, (snapshot) => {
+        setDocuments(
+          snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }))
+        );
+      });
     }
-  }, [filter]);
+  }, [filterOpen, filterReview]);
 
   function findNumDocumentsOpen() {
     let documentsOpen = [];
@@ -69,15 +80,17 @@ function DocumentsList() {
           <div className="documents-container__information">
             <img src={sortIcon} alt="Sort icon"></img>
             <p
-              onClick={() => setFilter(!filter)}
+              onClick={() => setFilterOpen(!filterOpen)}
               className="documents-container__text documents-container__text--left"
             >
               Open
               <span>{findNumDocumentsOpen()}</span>
             </p>
             <img src={sortIcon} alt="Sort icon"></img>
-            <p className="documents-container__text">
-              To review
+            <p 
+              onClick={() => setFilterReview(!filterReview)}
+              className="documents-container__text"
+            >To review
               <span>{findNumDocumentsToReview()}</span>
             </p>
           </div>
