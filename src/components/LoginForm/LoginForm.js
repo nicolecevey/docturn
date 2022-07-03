@@ -11,20 +11,20 @@ function LoginForm() {
   const [ loading, setLoading ] = useState(false)
   const history = useHistory()
 
-   async function handleLogin(e) {
-    e.preventDefault();
-    console.log(e.target.email.value)
-    if(!e.target.email.value || !e.target.password.value) {
+   async function handleLogin(event) {
+    event.preventDefault();
+    console.log(event.target.email.value)
+    if(!event.target.email.value || !event.target.password.value) {
       return setError("Please enter all fields.")
     }
 
     try {
       setError("")
       setLoading(true)
-      await login(e.target.email.value, e.target.password.value)
+      await login(event.target.email.value, event.target.password.value)
       history.push("/documents")
     } catch {
-      setError("Failed to sign in.")
+      setError("Failed to log in.")
     }
     setLoading(false)
   };
@@ -33,7 +33,7 @@ function LoginForm() {
     setIsModalOpen(!isModalOpen);
   }
     return (
-      <>
+      <div>
         <form onSubmit={handleLogin} className="login-form">
           <h1 className="login-form__title">Login</h1>
           <input type="text" className="login-form__input" placeholder="Email" name="email"></input>
@@ -51,7 +51,7 @@ function LoginForm() {
         {isModalOpen && (
           <SignupForm onClick={toggleModal}/>
         )}
-      </>
+      </div>
     )
 }
 

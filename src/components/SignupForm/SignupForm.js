@@ -7,7 +7,7 @@ function SignupForm(props) {
   const {onClick} = props;
   const {signup} = useAuth()
   const [error, setError] = useState('')
-  const [ loading, setLoading ] = useState(false)
+  const [loading, setLoading] = useState(false)
 
   async function handleSignup(event) {
     event.preventDefault();

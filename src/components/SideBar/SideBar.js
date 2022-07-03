@@ -1,11 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "./SideBar.scss";
 import logoutIcon from "../../assets/icons/logout.svg";
+import { useAuth } from "../../Contexts/AuthContext";
+import { useState } from "react";
 
 function SideBar({ menuOpen, setMenuOpen }) {
+  const {currentUser,logout} = useAuth()
+  const [error, setError] = useState("")
+  const history = useHistory()
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  async function handleLogout() {
+    try {
+      await logout()
+      history.push("/")
+      toggleMenu()
+    } catch {
+      setError("Failed to log out")
+    }
+  }
 
   return (
     <nav className={"sidebar " + (menuOpen && "active")}>
@@ -23,18 +38,17 @@ function SideBar({ menuOpen, setMenuOpen }) {
         <li className="sidebar__list-item" onClick={() => toggleMenu()}>
           Contact
         </li>
-        {/* <li className="sidebar__list-item sidebar__list-item--signout" onClick={() => toggleMenu()}>
-                </li> */}
       </ul>
       <div className="sidebar__logout">
         <img src={logoutIcon} className="sidebar__logout-icon"></img>
         <Link
           to="/"
           className="sidebar__link sidebar__link--logout"
-          onClick={() => toggleMenu()}
+          onClick={() => handleLogout()}
         >
           Logout
         </Link>
+        {error && <p className="error">{error}</p>}
       </div>
     </nav>
   );
