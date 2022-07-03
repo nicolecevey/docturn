@@ -2,8 +2,8 @@ import "./Footer.scss";
 import facebookIcon from "../../assets/icons/Icon-facebook.svg"
 import instagramIcon from "../../assets/icons/Icon-instagram.svg"
 import twitterIcon from "../../assets/icons/Icon-twitter.svg"
-import googleIcon from "../../assets/icons/Google_Play-Badge-Logo.wine.svg";
-import appleIcon from "../../assets/icons/download-on-the-app-store-apple-logo-svgrepo-com.svg"
+import googleIcon from "../../assets/icons/google-play-badge.png";
+import appleIcon from "../../assets/icons/Apple_store_badge.svg"
 
 function Footer() {
     return (
@@ -12,7 +12,7 @@ function Footer() {
                 <div className="footer__contact">
                     <h3 className="footer__title">Contact Us</h3>
                     <p className="footer__text">info@docturn.com</p>
-                    <p className="footer__text">Phone: 416.555.5555</p>
+                    <p className="footer__text">416.555.5555</p>
                 </div>
                 <div className="footer__social-media">
                     <h3 className="footer__title">Follow DocTurn</h3>
@@ -47,7 +47,7 @@ function Footer() {
                     </div>
                 </div>
                 <div className="footer__app">
-                    <h3 className="footer__download-title">Donwload the app</h3>
+                    <h3 className="footer__download-title">Download the app</h3>
                     <div className="footer__download">
                         <img 
                             src={googleIcon} 

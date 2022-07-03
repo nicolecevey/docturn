@@ -16,12 +16,16 @@
     }
 
     &__tagline {
-        padding: 5rem;
+        padding: 4rem;
         text-align: center;
         margin-top: -5rem;
         color: white;
         font-weight: 100;
         font-size: 3rem;
         line-height: 3rem;
+
+        @include tablet{
+            padding: 5rem;
+        }
     }
 }
