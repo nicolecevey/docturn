@@ -31,18 +31,17 @@ function AddDocumentForm() {
       </Link>
       <h1 className="add-form__title">Add Document</h1>
       <div className="add-form__container">
-        <img src={documentIcon} className="add-form__icon"></img>
         <form className="add-form__form" onSubmit={submitHandler}>
           <label className="add-form__label add-form__label--title">
-            Document Title:
+            Document Title
             <input 
               type="text" 
               className="add-form__input" 
               name="title"
             ></input>
           </label>
-          <p className="add-form__label">Document Status:</p>
-          <label>
+          <p className="add-form__label">Document Status</p>
+          <label className="add-form__radio-label">
             <input
               type="radio"
               name="status"
@@ -59,14 +58,14 @@ function AddDocumentForm() {
             Closed
           </label>
           <label className="add-form__label">
-            Version Number:
+            Version Number
             <input 
               className="add-form__input" 
               type="number" 
               name="version"
             ></input>
           </label>
-          <p className="add-form__label">Waiting for your review:</p>
+          <p className="add-form__label">Waiting for your review</p>
           <label className="add-form__radio-label">
             <input
               type="radio"
@@ -84,7 +83,7 @@ function AddDocumentForm() {
             No
           </label>
           <label className="add-form__label">
-            Reviewer Name:
+            Reviewer Name
             <input 
               type="text" 
               className="add-form__input"

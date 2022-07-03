@@ -1,5 +1,4 @@
 import "./PageNavigation.scss";
-import logo from "../../assets/logo.png"
 import { NavLink } from "react-router-dom";
 
 function PageNavigation({menuOpen, setMenuOpen}) {

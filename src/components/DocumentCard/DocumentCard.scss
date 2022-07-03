@@ -1,8 +1,8 @@
 @use "../../styles/partials/mixins" as *;
 
 .document-card {
-    width: 19rem;
-    height: 24rem;
+    width: 20rem;
+    height: 27rem;
     padding:  1.5rem 1rem;
     display: flex;
     flex-direction: column;
@@ -45,5 +45,6 @@
     &__button {
         @include button;
         width: 6rem;
+        font-size: 1rem;;
     }
 }

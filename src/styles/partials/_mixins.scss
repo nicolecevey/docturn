@@ -31,8 +31,9 @@
 
 @mixin input {
     width: 12rem;
-    border-radius: 8px;
-    border: 1px solid lightgray;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 1px solid slategray;
     padding: .75rem;
     background-color: rgba(211, 211, 211, 0.089);
 
@@ -41,12 +42,12 @@
     }
 
     &:active {
-        border-color: slategray;
+        border: 1px solid #3942de;
     }
 
     &:focus {
-        border-color: slategray;
-        outline-color: slategray;
+        border: 1px solid #3942de;
+        outline: 1px solid #3942de;
     }
 }
 
