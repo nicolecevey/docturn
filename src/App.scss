@@ -37,4 +37,28 @@ li {
 
 .error {
     color: red;
+    font-size: 1rem;
+    margin: .5rem 0;
+}
+
+.error-input{
+    width: 15rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    border: 2px solid red;
+    padding: .75rem;
+    background-color: rgba(211, 211, 211, 0.089);
+
+    &::placeholder {
+        font-size: 1rem;
+    }
+
+    &:active {
+        border: 2px solid red;
+    }
+
+    &:focus {
+        border: 2px solid red;
+        outline: 1px solid red;
+    }
 }

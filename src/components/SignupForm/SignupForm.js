@@ -6,19 +6,31 @@ import { useAuth } from "../../Contexts/AuthContext"
 function SignupForm(props) {
   const {onClick} = props;
   const {signup} = useAuth()
-  const [error, setError] = useState('')
+  const [error, setError] = useState("")
+  const [passwordError, setPasswordError] = useState("")
+  const [emailError, setEmailError] = useState("")
   const [loading, setLoading] = useState(false)
 
   async function handleSignup(event) {
     event.preventDefault();
-    console.log(event.target.email.value)
-    if(!event.target.email.value || !event.target.password.value) {
-      return setError("Please enter all fields.")
+    const email = event.target.email.value
+    const password = event.target.password.value;
+
+    if(!email) {
+       setEmailError("Please do not leave email blank.")
+    } else if((email).includes("@") === false) {
+       setEmailError("Please enter a valid email address.")
+    } 
+    if (!password) {
+      setPasswordError("Please do not leave password blank.")
+    } else if (password.length < 6) {
+       setPasswordError("Please enter a password longer than 6 characters.")
     }
+
     try {
       setError("")
       setLoading(true)
-      await signup(event.target.email.value, event.target.password.value)
+      await signup(email,password)
     } catch {
       setError("Failed to signup.")
     }
@@ -27,7 +39,6 @@ function SignupForm(props) {
 
     return (
       <div className="modal">
-        {error && <p>You shall not pass</p>}
         <form className="signup-form" onSubmit={handleSignup}>
           <img
             src={closeIcon}
@@ -38,19 +49,22 @@ function SignupForm(props) {
           <h1 className="signup-form__title">Signup</h1>
           <input
             type="text"
-            className="signup-form__input"
+            className={!emailError ? "signup-form__input " : "error-input"}
             placeholder="Email"
             name="email"
           ></input>
+          {emailError && <p className="error">{emailError}</p>}
           <input
             type="text"
-            className="signup-form__input"
+            className={!passwordError ? "signup-form__input " : "error-input"}
             placeholder="Password"
             name="password"
           ></input>
+          {passwordError && <p className="error">{passwordError}</p>}
           <button type="submit" className="signup-form__button">
             Sign Up
           </button>
+          {error && <p className="error">{error}</p>}
           <div className="signup-form__signup">
             <p>Already have an account?</p>
             <button

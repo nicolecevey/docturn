@@ -23,7 +23,7 @@
 .signup-form {
     background-color: white;
     width: 25rem;
-    height: 28rem;
+    height: 30rem;
     padding: 1rem;
     z-index: 1000;
     display: flex;
@@ -55,7 +55,7 @@
     &__signup {
         display: flex;
         align-items: center;
-        margin-top: 2rem;
+        margin-top: 1rem;
     }
 
     &__link {
