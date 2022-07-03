@@ -3,7 +3,7 @@
 .sidebar {
     width: 18.75rem;
     height: 100vh;
-    font-size: 2rem;
+    font-size: 1.75rem;
     font-weight: 100;
     position: fixed;
     top: 0;
@@ -48,6 +48,10 @@
         &:hover {
             font-weight: 500;
         }
+    }
+
+    &__logout-icon {
+        height: 2rem;
     }
 
     &__link {

@@ -27,7 +27,7 @@ function SideBar({ menuOpen, setMenuOpen }) {
                 </li> */}
       </ul>
       <div className="sidebar__logout">
-        <img src={logoutIcon}></img>
+        <img src={logoutIcon} className="sidebar__logout-icon"></img>
         <Link
           to="/"
           className="sidebar__link sidebar__link--logout"
