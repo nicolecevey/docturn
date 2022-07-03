@@ -41,7 +41,7 @@ li {
     margin: .5rem 0;
 }
 
-.error-input{
+.error-input, .error-input__login {
     width: 15rem;
     font-size: 1rem;
     border-radius: 5px;
@@ -61,4 +61,8 @@ li {
         border: 2px solid red;
         outline: 1px solid red;
     }
+}
+
+.error-input__login {
+    margin-bottom: 2rem;
 }

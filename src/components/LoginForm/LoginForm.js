@@ -13,8 +13,10 @@ function LoginForm() {
 
    async function handleLogin(event) {
     event.preventDefault();
-    console.log(event.target.email.value)
-    if(!event.target.email.value || !event.target.password.value) {
+    const email = event.target.email.value
+    const password = event.target.password.value;
+   
+    if(!email|| !password) {
       return setError("Please enter all fields.")
     }
 
@@ -36,9 +38,19 @@ function LoginForm() {
       <div>
         <form onSubmit={handleLogin} className="login-form">
           <h1 className="login-form__title">Login</h1>
-          <input type="text" className="login-form__input" placeholder="Email" name="email"></input>
-          <input type="text" className="login-form__input" placeholder="Password" name="password"></input>
+          <input 
+            type="text" 
+            className={!error ? "login-form__input" : "error-input__login"} 
+            placeholder="Email" name="email">
+          </input>
+          <input 
+            type="text" 
+            className={!error ? "login-form__input" : ("error-input__login")} 
+            placeholder="Password" 
+            name="password">
+          </input>
           <button type="submit" className="login-form__button">Login</button>
+          {error && <p className="error">{error}</p>}
           <div className="login-form__signup">
               <p>New to DocTurn?</p>
               <button
