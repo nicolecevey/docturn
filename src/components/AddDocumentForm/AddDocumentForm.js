@@ -1,5 +1,4 @@
 import "./AddDocumentForm.scss";
-import documentIcon from "../../assets/document-512.png";
 import { Link } from "react-router-dom";
 import { addDoc, collection, getFirestore}  from "firebase/firestore";
 import { useHistory } from "react-router-dom";
@@ -18,7 +17,6 @@ function AddDocumentForm() {
       version: event.target.version.value,
       toReview: event.target.toReview.value,
       reviewerName: event.target.reviewerName.value,
-      version: event.target.version.value,
       dateLastReviewed: event.target.dateLastReviewed.value
     })
     history.push("/documents")
@@ -45,16 +43,18 @@ function AddDocumentForm() {
             <input
               type="radio"
               name="status"
-              value="open"
+              value="Open"
               className="add-form__radio"
-            ></input>{" "}
+            ></input>
             Open
+          </label>
+          <label className="add-form__radio-label">
             <input
               type="radio"
               name="status"
-              value="closed"
+              value="Closed"
               className="add-form__radio"
-            ></input>{" "}
+            ></input>
             Closed
           </label>
           <label className="add-form__label">

@@ -1,5 +1,4 @@
 import "./EditDocumentForm.scss";
-import documentIcon from "../../assets/document-512.png";
 import { Link } from "react-router-dom";
 import { updateDoc, doc, getFirestore }  from "firebase/firestore";
 import { useHistory, useParams } from "react-router-dom";
@@ -46,10 +45,9 @@ function EditDocumentForm() {
       </Link>
       <h1 className="edit-form__title">Edit Document</h1>
       <div className="edit-form__container">
-        <img src={documentIcon} className="edit-form__icon" alt="Icon of document"></img>
         <form className="edit-form__form" onSubmit={editDocument}>
           <label className="edit-form__label edit-form__label--title">
-            Document Title:
+            Document Title
             <input 
               type="text" 
               className="edit-form__input" 
@@ -57,8 +55,8 @@ function EditDocumentForm() {
               placeholder={document.title}
             ></input>
           </label>
-          <p className="edit-form__label">Document Status:</p>
-          <label>
+          <p className="edit-form__label">Document Status</p>
+          <label className="edit-form__radio-label" for="status">
             <input
               type="radio"
               name="status"
@@ -77,7 +75,7 @@ function EditDocumentForm() {
             Closed
           </label>
           <label className="edit-form__label">
-            Version Number:
+            Version Number
             <input 
               className="edit-form__input" 
               type="number" 
@@ -85,7 +83,7 @@ function EditDocumentForm() {
               placeholder={document.version}
             ></input>{" "}
           </label>
-          <p className="edit-form__label">Waiting for your review:</p>
+          <p className="edit-form__label">Waiting for your review</p>
           <label className="edit-form__radio-label">
             <input
               type="radio"

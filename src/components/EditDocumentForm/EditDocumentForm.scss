@@ -19,7 +19,8 @@
     }
 
     &__edit-button {
-        margin: 3rem 0 0 -7rem;
+        margin-top: 3rem;
+        align-self: center;
     }
 
     &__link {
@@ -29,14 +30,11 @@
     &__icon {
         height: 20rem;
         width: 20rem;
-        opacity: 80%;
     }
 
     &__container {
         display: flex;
-        // border: 1px solid rgb(156, 161, 166);
-        // background-color: rgba(156, 161, 166, 0.062);
-        padding:  3rem 4rem 3rem 2rem;
+        padding:  3rem 2rem;
         border-radius: 5px;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     }
@@ -44,10 +42,12 @@
     &__form {
         display: flex;
         flex-direction: column;
+        width: 22rem;
     }
 
     &__input {
         @include input;
+        width: 100%;
         padding: .5rem;
         margin-top: .25rem;
     }
@@ -65,5 +65,62 @@
     &__radio {
         margin: 0 .5rem;
         margin-top: .25rem;
+        color: black;
+    }
+}
+
+// Radio button styling
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: white;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid black;
+  border-radius: 50%;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
+
+  &::before {
+    content: "";
+    width: 0.65em;
+    height: 0.65em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #3942de;
+    background-color: white;
+  }
+
+  &:checked::before {
+    transform: scale(1);
+  }
+
+  :focus {
+    outline: max(2px, 0.15em) solid #3942de;
+    outline-offset: max(2px, 0.15em);
+  }
+}
+
+.edit-form__radio-label {
+    margin-top: .5rem;
+    font-size: 1rem;
+    line-height: 1.1;
+    display: grid;
+    grid-template-columns: 1em auto;
+    gap: 0.5rem;
+
+    &:focus-within {
+        color: black;
     }
 }
