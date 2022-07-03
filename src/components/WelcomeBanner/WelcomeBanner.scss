@@ -21,15 +21,10 @@
         animation: animated-text 2s steps(19,end) 1s 1 normal both,
         animated-cursor 600ms steps(19,end);
       
-
-        /* text animation */
-
         @keyframes animated-text{
             from{width: 0rem;}
             to{width: 31rem;}
         }
-
-        /* cursor animations */
 
         @keyframes animated-cursor{
             from{border-right-color: #5f8af2;}

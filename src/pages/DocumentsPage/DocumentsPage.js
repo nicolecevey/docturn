@@ -4,6 +4,8 @@ import { db } from "../../firebase";
 
 function DocumentsPage() {
 
+  window.scrollTo(0,0)
+
   // state = {
   //   documents: [],
   //   hasErrorLoading: false,

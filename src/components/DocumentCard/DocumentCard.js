@@ -1,8 +1,6 @@
 import "./DocumentCard.scss";
 import React, { useState } from "react";
 import documentIcon from "../../assets/document-128.png";
-import deleteIcon from "../../assets/icons/delete_icon.svg";
-import editIcon from "../../assets/icons/edit_icon.svg";
 import { Link } from "react-router-dom";
 import DeleteModal from "../DeleteModal/DeleteModal";
 
@@ -39,7 +37,7 @@ function DocumentCard({
           alt="Document icon"
         ></img>
         <div className="document-card__details">
-          <h4>{title}</h4>
+          <h4 className="document-card__details--title">{title}</h4>
           <p>Status: {status}</p>
           <p>Version: {version}.0</p>
           <p>To review: {toReview ? "Yes" : "No"}</p>
