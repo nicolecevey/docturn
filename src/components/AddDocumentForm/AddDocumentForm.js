@@ -43,18 +43,16 @@ function AddDocumentForm() {
             <input
               type="radio"
               name="status"
-              value="Open"
+              value="open"
               className="add-form__radio"
-            ></input>
+            ></input>{" "}
             Open
-          </label>
-          <label className="add-form__radio-label">
             <input
               type="radio"
               name="status"
-              value="Closed"
+              value="closed"
               className="add-form__radio"
-            ></input>
+            ></input>{" "}
             Closed
           </label>
           <label className="add-form__label">

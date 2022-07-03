@@ -106,6 +106,10 @@ input[type="radio"] {
     transform: scale(1);
   }
 
+  &:checked {
+    background-color: #3942de;
+  }
+
   :focus {
     outline: max(2px, 0.15em) solid #3942de;
     outline-offset: max(2px, 0.15em);

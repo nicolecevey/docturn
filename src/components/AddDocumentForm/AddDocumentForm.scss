@@ -67,10 +67,12 @@
         margin: 0 .5rem;
         margin-top: .25rem;
         color: black;
+
     }
+
 }
 
-// Radio button styling
+Radio button styling
 
 *,
 *:before,
@@ -79,9 +81,9 @@
 }
 
 input[type="radio"] {
-    cursor: pointer;
-//   -webkit-appearance: none;
-//   appearance: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
   background-color: white;
   margin: 0;
   font: inherit;
@@ -107,6 +109,10 @@ input[type="radio"] {
 
   &:checked::before {
     transform: scale(1);
+  }
+
+  &:checked {
+    background-color: #3942de;
   }
 
   :focus {
