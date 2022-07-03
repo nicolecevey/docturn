@@ -1,7 +1,7 @@
 @use "../../styles/partials/mixins" as *;
 
 .welcome-banner {
-    padding: 6rem 4rem 0 5rem;
+    padding: 6rem 2rem 0 2rem;
     height: 25rem;
     background: linear-gradient(#434BE7, #5f1dec);
     display: flex;
@@ -15,5 +15,25 @@
 
     &__title {
         color: white;
+        white-space: nowrap;
+        overflow: hidden;  
+        border-right: solid 3px #5f8af2;
+        animation: animated-text 2s steps(19,end) 1s 1 normal both,
+        animated-cursor 600ms steps(19,end);
+      
+
+        /* text animation */
+
+        @keyframes animated-text{
+            from{width: 0rem;}
+            to{width: 31rem;}
+        }
+
+        /* cursor animations */
+
+        @keyframes animated-cursor{
+            from{border-right-color: #5f8af2;}
+            to{border-right-color: transparent;}
+        }
     }
 }

@@ -23,6 +23,11 @@
             align-items: flex-start;
             gap: 4rem;
         }
+
+        @include desktop {
+            gap: 5rem;
+            margin-left: 6rem;
+        }
     }
 
     &__title {
@@ -76,12 +81,22 @@
         }
     }
 
+    &__app {
+        @include desktop {
+            margin-left: -2rem;
+        }
+    }
+
     &__download {
         display: flex;
         align-items: center;
 
         @include tablet {
             flex-direction: column;
+        }
+
+        @include desktop {
+            flex-direction: row;
         }
     }
 
