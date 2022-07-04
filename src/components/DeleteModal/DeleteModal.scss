@@ -26,8 +26,8 @@
     &__container {
         background-color: white;
         position: absolute;
-        width: 25rem;
-        height: 22rem;
+        width: 29rem;
+        height: 17rem;
         padding: 2rem;
         z-index: 1000;
         display: flex;
@@ -42,5 +42,6 @@
 
     &__button {
         @include button;
+        margin-top: 2rem;
     }
 }

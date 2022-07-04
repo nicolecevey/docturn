@@ -13,18 +13,17 @@ function DeleteModal({onClick, id}) {
             })
     }
 
-    // const [isModalOpen, setIsModalOpen] = useState(false);
-
-    // const toggleModal = () => {
-    //     setIsModalOpen(!isModalOpen);
-    //   }
-
     return (
         <div className="modal">
             <section className="modal__container">
-                <img src={cancelIcon} className="modal__cancel-action" onClick={() => onClick()}></img>
-                <h1 className="modal__text">Are you sure you want to delete?</h1>
-                <button className="modal__button" onClick={() => handleClick()}>Delete</button>
+                <img 
+                    src={cancelIcon} 
+                    className="modal__cancel-action" 
+                    onClick={() => onClick()}
+                    alt="Cancel icon to go back to documents page"
+                ></img>
+                <h3 className="modal__text">Are you sure you want to delete?</h3>
+                <button className="modal__button" onClick={() => handleClick()}>Yes</button>
             </section>
         </div>
     )

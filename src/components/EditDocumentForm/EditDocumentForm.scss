@@ -12,6 +12,10 @@
         font-size: 3rem;
         margin: 2rem 0;
         color: $primary-font-color;
+
+        @include tablet {
+            margin-top: 1rem;
+        }
     }
 
     &__back-button, &__edit-button {
@@ -19,7 +23,7 @@
     }
 
     &__edit-button {
-        margin-top: 3rem;
+        margin-top: 2rem;
         align-self: center;
     }
 
@@ -34,9 +38,10 @@
 
     &__container {
         display: flex;
-        padding:  3rem 2rem;
+        padding:  3rem 3rem 2rem 3rem;
         border-radius: 5px;
         box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        background-color: #0248d309;
     }
 
     &__form {
@@ -50,12 +55,14 @@
         width: 100%;
         padding: .5rem;
         margin-top: .25rem;
+        background-color: white;
     }
 
     &__label {
         display: flex;
         flex-direction: column;
         @include label;
+        font-weight: 500;
 
         &--title {
             margin-top: 0;
