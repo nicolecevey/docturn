@@ -1,6 +1,7 @@
 import "./DocumentCard.scss";
 import React, { useState } from "react";
-import documentIcon from "../../assets/document-128.png";
+import documentIcon from "../../assets/icons/document-icon.svg";
+import reviewIcon from "../../assets/icons/review-icon.svg"
 import { Link } from "react-router-dom";
 import DeleteModal from "../DeleteModal/DeleteModal";
 
@@ -29,8 +30,18 @@ function DocumentCard({
   };
 
   return (
-    <article className="document-card" id={id}>
-      <div className="document-card__row">
+    <article 
+      className={`
+        document-card 
+        ${toReview === "yes" && "document-card--highlight-border"}
+        ${status === "closed" && "document-card--closed-border"}
+        `} 
+      id={id}>
+      <div className="document-card__col">
+        <div className="document-card__pills">
+          <span className={`document-card__status ${status === "open" ? "document-card__status--open" : "document-card__status--closed"}`}>{status}</span>
+          {(toReview === "yes") && <span className="document-card__review">To Review</span>}
+        </div>
         <img
           src={documentIcon}
           className="document-card__icon"
@@ -38,23 +49,24 @@ function DocumentCard({
         ></img>
         <div className="document-card__details">
           <h4 className="document-card__details--title">{title}</h4>
-          <p>Status: {status}</p>
-          <p>Version: {version}.0</p>
-          <p>To review: {toReview ? "Yes" : "No"}</p>
-          <p>{reviewerName ? `Reviewer name: ${reviewerName}` : "No current reviewer"}</p>
-          <p>Date last reviewed: {timestampToDate(lastReviewed)}</p>
+          <span className={`document-card__reviewer-pill ${toReview === "yes" && "document-card__reviewer-pill--review"}`}>
+            <img src={reviewIcon}></img>
+            <p className="document-card__text">{reviewerName ? `Reviewing: ${reviewerName}` : "No current reviewer"}</p>
+          </span>
+          <p className="document-card__text">Version {version}.0</p>
+          <p className="document-card__text">Last reviewed {timestampToDate(lastReviewed)}</p>
         </div>
       </div>
       <div className="document-card__actions">
         {/* <img src={editIcon} className="document-card__action-icon"></img> */}
         <button
-          className="document-card__button"
+          className="document-card__button-delete"
           onClick={() => setIsModalOpen(true)}
         >
           Delete
         </button>
         <Link to={`/document/${id}/edit`}>
-          <button className="document-card__button">Edit</button>
+          <button className="document-card__button-edit">Edit</button>
         </Link>
       </div>
       {isModalOpen && <DeleteModal onClick={toggleModal} id={id}/>}

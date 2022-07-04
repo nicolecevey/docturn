@@ -1,9 +1,9 @@
 @use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
 .document-card {
     width: 20rem;
-    height: 27rem;
-    padding:  1.5rem 1rem;
+    height: 24rem;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -11,10 +11,19 @@
     border-radius: 5px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 
+    &--highlight-border {
+        border-top: 8px solid #FFB800;
+    }
+
+    &--closed-border {
+        border-top: 8px solid #E5E5E5;
+    }
+
     &__icon {
-        width: 6rem;
-        height: 6rem;
+        width: 5rem;
+        height: 5rem;
         margin-bottom: 1rem;
+        align-self: center;
     }
 
     &__details{
@@ -22,29 +31,93 @@
         flex-direction: column;
         margin-bottom: 1rem;
         line-height: 2rem;
+        font-weight: 100;
+        color: $details-font-color;
 
         &--title {
-            align-self: center;
-            margin-bottom: 1rem;
+            margin-bottom: .5rem;
         }
     }
 
-    &__row {
+    &__reviewer-pill {
+        display: flex;
+        gap: .5rem;
+        margin-bottom: .5rem;
+        border-radius: 4px;
+        font-weight: 500;
+
+        // &--review {
+        //     background-color: #FFE49E;
+        //     color: #4C442F;
+        //     padding: .25rem .75rem;
+        //     width: fit-content;
+        // }
+    }
+
+    &__text {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    &__col {
         display: flex;
         flex-direction: column;
-        align-items: center;
+        width: 100%;
+        padding: 1rem 1rem 0 1rem;
+    }
+
+    &__pills {
+        display: flex;
+        align-self: flex-end;
+        justify-content: center;
+        margin-bottom: 2rem;
+        gap: 1rem;
+    }
+
+    &__status {
+        text-align: center;
+        border-radius: 4px;
+        padding: .25rem .75rem;
+
+        &--open {
+            background-color: #00A34B33;
+            color: #005226;
+        }
+
+        &--closed {
+            background-color: #0000001A;
+            color: $primary-font-color;
+        }
+    }
+
+    &__review {
+        padding: .25rem .75rem;
+        border-radius: 4px;
+        background-color: #FFE49E;
+        color: #4C442F;
     }
 
     &__actions {
         width: 100%;
         display: flex;
-        gap: 1rem;
+        gap: 2rem;
         justify-content: center;
+        margin-bottom: 1rem;
     }
 
-    &__button {
+    &__button-edit, &__button-delete {
         @include button;
-        width: 6rem;
-        font-size: 1rem;;
+        font-size: 1rem;
+        width: 5rem;
+    }
+
+    &__button-delete {
+        background-color: white;
+        color: #3a6adb;
+
+        &:hover {
+            background-color: white;
+            color: red;
+        }
     }
 }

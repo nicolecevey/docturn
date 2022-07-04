@@ -84,14 +84,14 @@ function DocumentsList() {
               className="documents-container__text documents-container__text--left"
             >
               Open
-              <span>{findNumDocumentsOpen()}</span>
+              <span className="documents-container__filter">{findNumDocumentsOpen()}</span>
             </p>
             <img src={sortIcon} alt="Sort icon"></img>
             <p 
               onClick={() => setFilterReview(!filterReview)}
               className="documents-container__text"
             >To review
-              <span>{findNumDocumentsToReview()}</span>
+              <span className="documents-container__filter">{findNumDocumentsToReview()}</span>
             </p>
           </div>
           <Link to="/documents/add" className="documents-container__link">
