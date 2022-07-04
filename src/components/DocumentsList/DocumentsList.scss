@@ -4,9 +4,13 @@
 
 .documents-container {
     min-height: 55rem;
-    padding: 2rem 2rem 6rem 2rem;
+    padding: 2rem 1rem 6rem 1rem;
     display: flex;
     flex-direction: column;
+
+    @include tablet {
+        padding: 2rem 2rem 6rem 2rem;
+    }
 
     &__filter {
         margin-left: .5rem;
@@ -20,6 +24,11 @@
 
     &__filter-title {
         color: #767676;
+        display: none;
+        
+        @include tablet {
+            display: flex;
+        }
     }
 
     &__actions {

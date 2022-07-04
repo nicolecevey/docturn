@@ -13,6 +13,7 @@ import {
 
 function DocumentsList() {
   const [documents, setDocuments] = useState([]);
+  const [allDocuments, setAllDocuments] = useState([]);
   const [filterOpen, setFilterOpen] = useState(false);
   const [filterReview, setFilterReview] = useState(false);
 
@@ -30,7 +31,16 @@ function DocumentsList() {
         );
       });
     } else if (filterOpen) {
-      const q = query(colRef,where("status", "==", "open"),orderBy("dateLastReviewed", "desc"));
+      const qAll = query(colRef, orderBy("dateLastReviewed", "desc"));
+      onSnapshot(qAll, (snapshot) => {
+        setAllDocuments(
+          snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }))
+        );
+      });
+      const q = query(colRef,where("status", "==", "Open"),orderBy("dateLastReviewed", "desc"));
       onSnapshot(q, (snapshot) => {
         setDocuments(
           snapshot.docs.map((doc) => ({
@@ -40,8 +50,17 @@ function DocumentsList() {
         );
       });
     } else if (filterReview) {
-      const q = query(colRef,where("toReview", "==", "yes"), orderBy("dateLastReviewed", "desc"));
+      const q = query(colRef,where("toReview", "==", "Yes"), orderBy("dateLastReviewed", "desc"));
       onSnapshot(q, (snapshot) => {
+        setDocuments(
+          snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }))
+        );
+      });
+      const qAll = query(colRef,where("status", "==", "Open"),orderBy("dateLastReviewed", "desc"));
+      onSnapshot(qAll, (snapshot) => {
         setDocuments(
           snapshot.docs.map((doc) => ({
             ...doc.data(),
@@ -51,7 +70,7 @@ function DocumentsList() {
       });
     }
   }, [filterOpen, filterReview]);
-
+ 
   function findNumDocumentsOpen() {
     let documentsOpen = [];
     documents.forEach((doc) => {
@@ -59,7 +78,6 @@ function DocumentsList() {
         documentsOpen.push(doc.status);
       }
     });
-    console.log(documentsOpen)
     return documentsOpen.length;
   }
 
@@ -78,12 +96,12 @@ function DocumentsList() {
       <section className="documents-container">
         <div className="documents-container__actions">
           <div className="documents-container__filter-row">
-            <p className="documents-container-filter-title">Filter</p>
+            <p className="documents-container__filter-title">Filter</p>
             <div className="documents-container__information">
               <p 
                 className={`documents-container__text ${(filterOpen === false && filterReview === false) && "documents-container__text-highlight"}`}
-                onClick={() => setFilterOpen(filterOpen ===false) && setFilterReview(filterReview === false)}
-              >All <span>{`(${documents.length})`}</span></p>
+                onClick={() => setFilterOpen(filterOpen === false) && setFilterReview(filterReview === false)}
+              >All <span>{filterOpen || filterReview ? allDocuments.length : documents.length}</span></p>
               <p
                 onClick={() => setFilterOpen(!filterOpen)}
                 className={`documents-container__text ${filterOpen && "documents-container__text-highlight"}`}

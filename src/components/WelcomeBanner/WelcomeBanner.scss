@@ -10,6 +10,7 @@
     gap: 4rem;
 
     @include tablet {
+        height: 30rem;
         gap: 10rem;
         padding-left: 5rem;
     }
