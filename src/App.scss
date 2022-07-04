@@ -39,6 +39,7 @@ li {
     color: red;
     font-size: 1rem;
     margin: .5rem 0;
+    text-align: center;
 }
 
 .error-input, .error-input__login {
@@ -65,4 +66,26 @@ li {
 
 .error-input__login {
     margin-bottom: 2rem;
+}
+
+.error-input__add-document {
+    margin-top: .5rem;
+    background-color: white;
+    font-size: 1rem;
+    border-radius: 10px;
+    border: 2px solid red;
+    padding: .5rem;
+
+    &::placeholder {
+        font-size: 1rem;
+    }
+
+    &:active {
+        border: 2px solid red;
+    }
+
+    &:focus {
+        border: 2px solid red;
+        outline: 1px solid red;
+    }
 }

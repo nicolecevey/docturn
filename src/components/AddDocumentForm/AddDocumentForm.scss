@@ -68,6 +68,20 @@
         &--title {
             margin-top: 0;
         }
+
+        &--status, &--toReview {
+            flex-direction: row;
+        }
+
+        &--error{
+            color: red;
+            margin-left: .5rem;
+            font-weight: 500;
+        }
+
+        &--hidden {
+            display: none;
+        }
     }
 
     &__radio {

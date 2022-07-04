@@ -1,25 +1,59 @@
 import "./AddDocumentForm.scss";
 import { Link } from "react-router-dom";
-import { addDoc, collection, getFirestore}  from "firebase/firestore";
+import { addDoc, collection, getFirestore }  from "firebase/firestore";
 import { useHistory } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 
 function AddDocumentForm() {
   let history = useHistory()
 
+  const [error, setError] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // useEffect(() => {
+  //   if(isSubmitted) {
+  //     setError(false)
+  //   }
+  // }, [isSubmitted]);
+
   const submitHandler = (event) => {
     event.preventDefault();
+    const title = event.target.title.value;
+    const status = event.target.status.value;
+    const version = event.target.version.value;
+    const toReview = event.target.toReview.value;
+    const reviewerName = event.target.reviewerName.value;
+    const dateLastReviewed = event.target.dateLastReviewed.value;
+
     const db = getFirestore();
     const documentRef = collection(db, "documents")
+    console.log(version)
 
-    addDoc(documentRef, {
-      title: event.target.title.value,
-      status: event.target.status.value,
-      version: event.target.version.value,
-      toReview: event.target.toReview.value,
-      reviewerName: event.target.reviewerName.value,
-      dateLastReviewed: event.target.dateLastReviewed.value
-    })
-    history.push("/documents")
+    try {
+      if (
+        !title ||
+        !status ||
+        !version ||
+        !toReview ||
+        !dateLastReviewed
+        ) {
+        setError("Please fill out all highlighted fields.")
+      } else if (!error) {
+        setError("")
+        setIsSubmitted(true)
+        addDoc(documentRef, {
+          title,
+          status,
+          version,
+          toReview,
+          reviewerName,
+          dateLastReviewed
+        })
+        history.push("/documents")
+      }
+    } catch {
+      setError("Failed to add document")
+    }
   };
 
   return (
@@ -34,11 +68,11 @@ function AddDocumentForm() {
             Document Title
             <input 
               type="text" 
-              className="add-form__input" 
+              className={error ? "error-input__add-document" : "add-form__input"} 
               name="title"
             ></input>
           </label>
-          <p className="add-form__label">Document Status</p>
+          <p className="add-form__label add-form__label--status">Document Status<span className={error ? "add-form__label--error" : "add-form__label--hidden"}>*</span></p>
           <label className="add-form__radio-label">
             <input
               type="radio"
@@ -58,12 +92,12 @@ function AddDocumentForm() {
           <label className="add-form__label">
             Version Number
             <input 
-              className="add-form__input" 
+              className={error ? "error-input__add-document" : "add-form__input"}
               type="number" 
               name="version"
             ></input>
           </label>
-          <p className="add-form__label">Waiting for your review</p>
+          <p className="add-form__label add-form__label--toReview">Waiting for your review<span className={error ? "add-form__label--error" : "add-form__label--hidden"}>*</span></p>
           <label className="add-form__radio-label">
             <input
               type="radio"
@@ -81,7 +115,7 @@ function AddDocumentForm() {
             No
           </label>
           <label className="add-form__label">
-            Reviewer Name
+            Reviewer Name (please leave empty if not being reviewed)
             <input 
               type="text" 
               className="add-form__input"
@@ -92,12 +126,13 @@ function AddDocumentForm() {
             <input 
               type="date" 
               name="dateLastReviewed"
-              className="add-form__input"
+              className={error ? "error-input__add-document" : "add-form__input"}
             ></input>
           </label>
           <button type="submit" className="add-form__add-button">
             Add
           </button>
+          {error && <p className="error">{error}</p>}
         </form>
       </div>
     </section>
