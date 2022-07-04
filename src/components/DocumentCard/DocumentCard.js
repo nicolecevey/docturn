@@ -33,14 +33,14 @@ function DocumentCard({
     <article 
       className={`
         document-card 
-        ${toReview === "yes" && "document-card--highlight-border"}
-        ${status === "closed" && "document-card--closed-border"}
+        ${(toReview === "yes" || toReview === "Yes") && "document-card--highlight-border"}
+        ${(status === "closed" || status === "Closed") && "document-card--closed-border"}
         `} 
       id={id}>
       <div className="document-card__col">
         <div className="document-card__pills">
-          <span className={`document-card__status ${status === "open" ? "document-card__status--open" : "document-card__status--closed"}`}>{status}</span>
-          {(toReview === "yes") && <span className="document-card__review">To Review</span>}
+          <span className={`document-card__status ${(status === "open" || status === "Open") ? "document-card__status--open" : "document-card__status--closed"}`}>{status}</span>
+          {(toReview === "yes" || toReview === "Yes") && <span className="document-card__review">To Review</span>}
         </div>
         <img
           src={documentIcon}
@@ -49,7 +49,7 @@ function DocumentCard({
         ></img>
         <div className="document-card__details">
           <h4 className="document-card__details--title">{title}</h4>
-          <span className={`document-card__reviewer-pill ${toReview === "yes" && "document-card__reviewer-pill--review"}`}>
+          <span className={`document-card__reviewer-pill ${(toReview === "yes" || toReview === "Yes") && "document-card__reviewer-pill--review"}`}>
             <img src={reviewIcon}></img>
             <p className="document-card__text">{reviewerName ? `Reviewing: ${reviewerName}` : "No current reviewer"}</p>
           </span>
@@ -58,7 +58,6 @@ function DocumentCard({
         </div>
       </div>
       <div className="document-card__actions">
-        {/* <img src={editIcon} className="document-card__action-icon"></img> */}
         <button
           className="document-card__button-delete"
           onClick={() => setIsModalOpen(true)}

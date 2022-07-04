@@ -43,14 +43,14 @@ function AddDocumentForm() {
             <input
               type="radio"
               name="status"
-              value="open"
+              value="Open"
               className="add-form__radio"
             ></input>{" "}
             Open
             <input
               type="radio"
               name="status"
-              value="closed"
+              value="Closed"
               className="add-form__radio"
             ></input>{" "}
             Closed
@@ -68,14 +68,14 @@ function AddDocumentForm() {
             <input
               type="radio"
               name="toReview"
-              value="yes"
+              value="Yes"
               className="add-form__radio"
             ></input>{" "}
             Yes
             <input
               type="radio"
               name="toReview"
-              value="no"
+              value="No"
               className="add-form__radio"
             ></input>{" "}
             No

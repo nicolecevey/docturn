@@ -10,7 +10,6 @@ import {
   orderBy,
   where,
 } from "firebase/firestore";
-import sortIcon from "../../assets/icons/sort-24px.svg";
 
 function DocumentsList() {
   const [documents, setDocuments] = useState([]);
@@ -56,17 +55,18 @@ function DocumentsList() {
   function findNumDocumentsOpen() {
     let documentsOpen = [];
     documents.forEach((doc) => {
-      if (doc.status === "open" || "Open") {
+      if (doc.status === "open" || doc.status === "Open") {
         documentsOpen.push(doc.status);
       }
     });
+    console.log(documentsOpen)
     return documentsOpen.length;
   }
 
   function findNumDocumentsToReview() {
     let toReview = [];
     documents.forEach((doc) => {
-      if (doc.toReview === "yes" || "Yes") {
+      if (doc.toReview === "yes" || doc.toReview === "Yes") {
         toReview.push(doc.toReview);
       }
     });
@@ -76,23 +76,28 @@ function DocumentsList() {
   return (
     <>
       <section className="documents-container">
-        <div className="documents-container__header">
-          <div className="documents-container__information">
-            <img src={sortIcon} alt="Sort icon"></img>
-            <p
-              onClick={() => setFilterOpen(!filterOpen)}
-              className="documents-container__text documents-container__text--left"
-            >
-              Open
-              <span className="documents-container__filter">{findNumDocumentsOpen()}</span>
-            </p>
-            <img src={sortIcon} alt="Sort icon"></img>
-            <p 
-              onClick={() => setFilterReview(!filterReview)}
-              className="documents-container__text"
-            >To review
-              <span className="documents-container__filter">{findNumDocumentsToReview()}</span>
-            </p>
+        <div className="documents-container__actions">
+          <div className="documents-container__filter-row">
+            <p className="documents-container-filter-title">Filter</p>
+            <div className="documents-container__information">
+              <p 
+                className={`documents-container__text ${(filterOpen === false && filterReview === false) && "documents-container__text-highlight"}`}
+                onClick={() => setFilterOpen(filterOpen ===false) && setFilterReview(filterReview === false)}
+              >All <span>{`(${documents.length})`}</span></p>
+              <p
+                onClick={() => setFilterOpen(!filterOpen)}
+                className={`documents-container__text ${filterOpen && "documents-container__text-highlight"}`}
+              >
+                Open
+              <span className="documents-container__filter">{`(${findNumDocumentsOpen()})`}</span>
+              </p>
+              <p 
+                onClick={() => setFilterReview(!filterReview)}
+                className={`documents-container__text ${filterReview && "documents-container__text-highlight"}`}
+              >To review
+              <span className="documents-container__filter">{`(${findNumDocumentsToReview()})`}</span>
+              </p>
+            </div>
           </div>
           <Link to="/documents/add" className="documents-container__link">
             <button className="documents-container__button">

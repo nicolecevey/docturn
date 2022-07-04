@@ -56,7 +56,7 @@ function EditDocumentForm() {
             ></input>
           </label>
           <p className="edit-form__label">Document Status</p>
-          <label className="edit-form__radio-label" for="status">
+          <label className="edit-form__radio-label">
             <input
               type="radio"
               name="status"
