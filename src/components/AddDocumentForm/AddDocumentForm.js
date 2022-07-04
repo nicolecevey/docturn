@@ -38,7 +38,7 @@ function AddDocumentForm() {
         !dateLastReviewed
         ) {
         setError("Please fill out all highlighted fields.")
-      } else if (!error) {
+      } else if (error.length > 0) {
         setError("")
         setIsSubmitted(true)
         addDoc(documentRef, {

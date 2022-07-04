@@ -40,7 +40,7 @@ function DocumentsList() {
           }))
         );
       });
-      const q = query(colRef,where("status", "==", "Open"),orderBy("dateLastReviewed", "desc"));
+      const q = query(colRef,where("status", "==", "Open"), orderBy("dateLastReviewed", "desc"));
       onSnapshot(q, (snapshot) => {
         setDocuments(
           snapshot.docs.map((doc) => ({
@@ -50,17 +50,17 @@ function DocumentsList() {
         );
       });
     } else if (filterReview) {
-      const q = query(colRef,where("toReview", "==", "Yes"), orderBy("dateLastReviewed", "desc"));
-      onSnapshot(q, (snapshot) => {
-        setDocuments(
+      const qAll = query(colRef, orderBy("dateLastReviewed", "desc"));
+      onSnapshot(qAll, (snapshot) => {
+        setAllDocuments(
           snapshot.docs.map((doc) => ({
             ...doc.data(),
             id: doc.id,
           }))
         );
       });
-      const qAll = query(colRef,where("status", "==", "Open"),orderBy("dateLastReviewed", "desc"));
-      onSnapshot(qAll, (snapshot) => {
+      const q = query(colRef,where("toReview", "==", "Yes"), orderBy("dateLastReviewed", "desc"));
+      onSnapshot(q, (snapshot) => {
         setDocuments(
           snapshot.docs.map((doc) => ({
             ...doc.data(),
