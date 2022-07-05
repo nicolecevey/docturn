@@ -4,12 +4,12 @@
 
 .documents-container {
     min-height: 55rem;
-    padding: 2rem 1rem 6rem 1rem;
+    padding: 2rem 1rem 4rem 1rem;
     display: flex;
     flex-direction: column;
 
     @include tablet {
-        padding: 2rem 2rem 6rem 2rem;
+        padding: 2rem 2rem 4rem 2rem;
     }
 
     &__filter {
@@ -23,7 +23,7 @@
     }
 
     &__filter-title {
-        color: #767676;
+        color: $filter-color;
         display: none;
         
         @include tablet {
@@ -35,7 +35,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 2rem;
+        margin-bottom: 3rem;
         width: 100%;
     }
 
@@ -43,28 +43,31 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        gap: 1rem;
-        width: 21rem;
+        gap: 1.75rem;
+        height: 2.75rem;
+        width: 23rem;
         border-radius: 25px;
         font-size: 1.25rem;
         border: none;
-        // padding: .75rem;
-        background-color: white;
-        border: 1px solid #D7D7D7;
-        color: #3a6adb;
+        background-color: $primary-background-color;
+        // border: 1px solid #D7D7D7;
+        // position: absolute;
+        color: $CTA-font-color;
     } 
     
     &__text {
         cursor: pointer;
+        position: relative;
     }
 
     &__text-highlight {
-        background-color: #3a6adb;
-        color: white;
+        background-color: $button-background-color;
+        color: $secondary-font-color;
         border-radius: 25px;
-        padding: .5rem 1.25rem;
+        padding: .5rem 1rem;
         position: relative;
         margin-left: -.75rem;
+        position: relative;
     }
 
     &__button {
@@ -89,7 +92,7 @@
 }
 
 .documents-list {
-    background-color: white;
+    background-color: $primary-background-color;;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;

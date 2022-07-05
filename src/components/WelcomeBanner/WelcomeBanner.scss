@@ -1,9 +1,10 @@
 @use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
 
 .welcome-banner {
     padding: 6rem 2rem 0 2rem;
     height: 27rem;
-    background: linear-gradient(#434BE7, #5f1dec);
+    background: $hero-background-color;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -17,10 +18,10 @@
 
     &__title {
         font-size: 2.4rem;
-        color: white;
+        color: $secondary-font-color;
         white-space: nowrap;
         overflow: hidden;  
-        border-right: solid 3px #5f8af2;
+        border-right: solid 3px $cursor-color;
         animation: animated-text 2s steps(19,end) 1s 1 normal both,
         animated-cursor 600ms steps(19,end);
       
@@ -30,7 +31,7 @@
         }
 
         @keyframes animated-cursor{
-            from{border-right-color: #5f8af2;}
+            from{border-right-color: $cursor-color;}
             to{border-right-color: transparent;}
         }
 

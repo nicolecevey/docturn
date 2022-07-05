@@ -11,7 +11,7 @@
     position: fixed;
     width: 100%;
     z-index: 998;
-    color: white;
+    color: $secondary-font-color;
     overflow: hidden;
 
     @include tablet {
@@ -19,7 +19,7 @@
     }
 
     &__logo {
-        color: white;
+        color: $secondary-font-color;
     }
 
     .hamburger {
@@ -33,26 +33,26 @@
         span {
             width: 100%;
             height: 3px;
-            background-color: white;
+            background-color: $primary-background-color;
             transform-origin: left;
             transition: all 1s ease;
         }
     }
 
     &.active {
-        color: white;
+        color: $secondary-font-color;
 
         .hamburger {
             span {
                 &:first-child {
-                    background-color: white;
+                    background-color: $primary-background-color;
                     transform: rotate(45deg)
                 }
                 &:nth-child(2) {
                     opacity: 0;
                 }
                 &:last-child {
-                    background-color: white;
+                    background-color: $primary-background-color;
                     transform: rotate(-45deg)
                 }
             }

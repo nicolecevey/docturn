@@ -4,7 +4,7 @@ import { getFirestore, deleteDoc, doc } from "firebase/firestore";
 
 function DeleteModal({onClick, id}) {
 
-    const handleClick = (event) => {
+    const handleClick = () => {
         const db = getFirestore()
         const docRef = doc(db, "documents", id)
         deleteDoc(docRef)

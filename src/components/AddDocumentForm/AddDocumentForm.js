@@ -2,19 +2,12 @@ import "./AddDocumentForm.scss";
 import { Link } from "react-router-dom";
 import { addDoc, collection, getFirestore }  from "firebase/firestore";
 import { useHistory } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function AddDocumentForm() {
   let history = useHistory()
 
   const [error, setError] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  // useEffect(() => {
-  //   if(isSubmitted) {
-  //     setError(false)
-  //   }
-  // }, [isSubmitted]);
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -38,9 +31,8 @@ function AddDocumentForm() {
         !dateLastReviewed
         ) {
         setError("Please fill out all highlighted fields.")
-      } else if (error.length > 0) {
+      } else if (error === "") {
         setError("")
-        setIsSubmitted(true)
         addDoc(documentRef, {
           title,
           status,

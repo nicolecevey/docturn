@@ -14,16 +14,39 @@ import {
 function DocumentsList() {
   const [documents, setDocuments] = useState([]);
   const [allDocuments, setAllDocuments] = useState([]);
+  const [toReviewDocuments, setReviewDocuments] = useState([]);
   const [filterOpen, setFilterOpen] = useState(false);
   const [filterReview, setFilterReview] = useState(false);
 
   useEffect(() => {
     const colRef = collection(db, "documents");
+    const q = query(colRef, orderBy("dateLastReviewed", "desc"));
+    onSnapshot(q, (snapshot) => {
+      setAllDocuments(
+        snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
+    });
+
+    if(filterOpen && filterReview && filterOpen){
+      return findNumDocumentsToReviewAndOpen();
+    }
 
     if(filterOpen === false && filterReview === false) {
       const q = query(colRef, orderBy("dateLastReviewed", "desc"));
       onSnapshot(q, (snapshot) => {
         setDocuments(
+          snapshot.docs.map((doc) => ({
+            ...doc.data(),
+            id: doc.id,
+          }))
+        );
+      });
+      const qReview = query(colRef, orderBy("dateLastReviewed", "desc"));
+      onSnapshot(qReview, (snapshot) => {
+        setReviewDocuments(
           snapshot.docs.map((doc) => ({
             ...doc.data(),
             id: doc.id,
@@ -61,7 +84,7 @@ function DocumentsList() {
       });
       const q = query(colRef,where("toReview", "==", "Yes"), orderBy("dateLastReviewed", "desc"));
       onSnapshot(q, (snapshot) => {
-        setDocuments(
+        setReviewDocuments(
           snapshot.docs.map((doc) => ({
             ...doc.data(),
             id: doc.id,
@@ -71,24 +94,38 @@ function DocumentsList() {
     }
   }, [filterOpen, filterReview]);
  
-  function findNumDocumentsOpen() {
-    let documentsOpen = [];
-    documents.forEach((doc) => {
-      if (doc.status === "open" || doc.status === "Open") {
-        documentsOpen.push(doc.status);
-      }
-    });
-    return documentsOpen.length;
-  }
+  // function findNumDocumentsOpen() {
+  //   let documentsOpen = [];
+  //   documents.forEach((doc) => {
+  //     if (doc.status === "open" || doc.status === "Open") {
+  //       documentsOpen.push(doc.status);
+  //     }
+  //   });
+  //   return documentsOpen.length;
+  // }
 
   function findNumDocumentsToReview() {
     let toReview = [];
-    documents.forEach((doc) => {
+    toReviewDocuments.forEach((doc) => {
       if (doc.toReview === "yes" || doc.toReview === "Yes") {
         toReview.push(doc.toReview);
       }
     });
     return toReview.length;
+  }
+
+  function findNumDocumentsToReviewAndOpen() {
+    const data = [];
+    allDocuments.forEach((doc) => {
+      if (doc.toReview === "Yes" && doc.status === "Open") {
+        data.push(doc);
+      }
+    });
+    setDocuments(data);
+  }
+
+  function findOpenDocLength() {
+    return allDocuments.filter((doc)=>doc.status === 'Open').length
   }
 
   return (
@@ -99,19 +136,19 @@ function DocumentsList() {
             <p className="documents-container__filter-title">Filter</p>
             <div className="documents-container__information">
               <p 
-                className={`documents-container__text ${(filterOpen === false && filterReview === false) && "documents-container__text-highlight"}`}
+                className={`documents-container__text--all ${(filterOpen === false && filterReview === false) && "documents-container__text-highlight"}`}
                 onClick={() => setFilterOpen(filterOpen === false) && setFilterReview(filterReview === false)}
-              >All <span>{filterOpen || filterReview ? allDocuments.length : documents.length}</span></p>
+              >All <span>({filterOpen || filterReview ? allDocuments.length : documents.length})</span></p>
               <p
                 onClick={() => setFilterOpen(!filterOpen)}
-                className={`documents-container__text ${filterOpen && "documents-container__text-highlight"}`}
+                className={`documents-container__text--open ${filterOpen && "documents-container__text-highlight"}`}
               >
                 Open
-              <span className="documents-container__filter">{`(${findNumDocumentsOpen()})`}</span>
+              <span className="documents-container__filter">{`(${findOpenDocLength()})`}</span>
               </p>
               <p 
                 onClick={() => setFilterReview(!filterReview)}
-                className={`documents-container__text ${filterReview && "documents-container__text-highlight"}`}
+                className={`documents-container__text--to-review ${filterReview && "documents-container__text-highlight"}`}
               >To review
               <span className="documents-container__filter">{`(${findNumDocumentsToReview()})`}</span>
               </p>

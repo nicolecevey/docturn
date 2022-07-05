@@ -40,8 +40,8 @@
         display: flex;
         padding:  3rem 3rem 2rem 3rem;
         border-radius: 5px;
-        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        background-color: #0248d309;
+        box-shadow: $box-shadow;
+        background-color: $form-background-color;
     }
 
     &__form {
@@ -55,7 +55,7 @@
         width: 100%;
         padding: .5rem;
         margin-top: .25rem;
-        background-color: white;
+        background-color: $primary-background-color;
     }
 
     &__label {
@@ -72,7 +72,7 @@
     &__radio {
         margin: 0 .5rem;
         margin-top: .25rem;
-        color: black;
+        color: $primary-font-color;
     }
 }
 
@@ -86,13 +86,13 @@
 input[type="radio"] {
   -webkit-appearance: none;
   appearance: none;
-  background-color: white;
+  background-color: $primary-background-color;
   margin: 0;
   font: inherit;
   color: currentColor;
   width: 1.15em;
   height: 1.15em;
-  border: 0.15em solid black;
+  border: 0.15em solid $primary-font-color;
   border-radius: 50%;
   transform: translateY(-0.075em);
   display: grid;
@@ -105,8 +105,8 @@ input[type="radio"] {
     border-radius: 50%;
     transform: scale(0);
     transition: 120ms transform ease-in-out;
-    box-shadow: inset 1em 1em #3942de;
-    background-color: white;
+    box-shadow: inset 1em 1em $button-background-color;
+    background-color: $primary-background-color;
   }
 
   &:checked::before {
@@ -114,11 +114,11 @@ input[type="radio"] {
   }
 
   &:checked {
-    background-color: #3942de;
+    background-color: $button-background-color;
   }
 
   :focus {
-    outline: max(2px, 0.15em) solid #3942de;
+    outline: max(2px, 0.15em) solid $button-background-color;
     outline-offset: max(2px, 0.15em);
   }
 }
@@ -132,6 +132,6 @@ input[type="radio"] {
     gap: 0.5rem;
 
     &:focus-within {
-        color: black;
+        color: $primary-font-color;
     }
 }

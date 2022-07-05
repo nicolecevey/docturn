@@ -60,7 +60,7 @@ function EditDocumentForm() {
             <input
               type="radio"
               name="status"
-              value="open"
+              value="Open"
               className="edit-form__radio"
               defaultChecked={document.status}
             ></input>{" "}
@@ -68,7 +68,7 @@ function EditDocumentForm() {
             <input
               type="radio"
               name="status"
-              value="closed"
+              value="Closed"
               className="edit-form__radio"
               defaultChecked={!document.status}
             ></input>{" "}

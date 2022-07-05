@@ -9,7 +9,7 @@
     top: 0;
     right: -18.75rem;
     z-index: 997;
-    background-color: #565de7;
+    background-color: $sidebar-background-color;
     display: flex;
     flex-direction: column;
     transition: all 1s ease;
@@ -29,7 +29,7 @@
 
     &__list-item {
         margin-bottom: 2rem;
-        color: white;
+        color: $secondary-font-color;
         display: flex;
         flex-direction: column;
         cursor: pointer;
@@ -56,7 +56,7 @@
 
     &__link {
         font-size: inherit;
-        color: white;
+        color: $secondary-font-color;
 
         &--logout {
             cursor: pointer;

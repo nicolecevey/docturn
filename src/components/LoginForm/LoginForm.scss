@@ -32,13 +32,13 @@
     &__link {
         margin-left: 2rem;
         border: none;
-        background-color: white;
+        background-color: $primary-background-color;
         cursor: pointer;
         color: $hover-font-color;
         font-size: 1.125rem;
 
         &:hover {
-            color: #0812de;
+            color: $hover-font-color;
         }
     }
 }

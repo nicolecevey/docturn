@@ -4,6 +4,7 @@ import documentIcon from "../../assets/icons/document-icon.svg";
 import reviewIcon from "../../assets/icons/review-icon.svg"
 import { Link } from "react-router-dom";
 import DeleteModal from "../DeleteModal/DeleteModal";
+import pinIcon from "../../assets/icons/pin.svg";
 
 function DocumentCard({
   id,
@@ -37,6 +38,7 @@ function DocumentCard({
         ${(status === "closed" || status === "Closed") && "document-card--closed-border"}
         `} 
       id={id}>
+      <img className="document-card__pin-icon" src={pinIcon} alt="Pin Icon"></img>
       <div className="document-card__col">
         <div className="document-card__pills">
           <span className={`document-card__status ${(status === "open" || status === "Open") ? "document-card__status--open" : "document-card__status--closed"}`}>{status}</span>
@@ -50,7 +52,7 @@ function DocumentCard({
         <div className="document-card__details">
           <h4 className="document-card__details--title">{title}</h4>
           <span className={`document-card__reviewer-pill ${(toReview === "yes" || toReview === "Yes") && "document-card__reviewer-pill--review"}`}>
-            <img src={reviewIcon}></img>
+            <img src={reviewIcon} alt="Document with magnifying glass icon"></img>
             <p className="document-card__text">{reviewerName ? `Reviewing: ${reviewerName}` : "No current reviewer"}</p>
           </span>
           <p className="document-card__text">Version {version}.0</p>

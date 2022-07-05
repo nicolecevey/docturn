@@ -8,10 +8,27 @@ $root-font-size: 100%;
 // Font colors //
 $primary-font-color: #000000;
 $secondary-font-color: white;
+$CTA-font-color: #3a6adb;
+$filter-color: #767676;
 $navbar-font-color: #3942de;
 $hover-font-color: #0812de;
 $details-font-color: #464646;
+$highlight-font-color: #4C442F;
+$open-pill-font-color: #005226;
+$delete-hover-color: red;
+$error-color: red;
+$closed-border-color: #E5E5E5;
+$box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+$cursor-color: #5f8af2;
 
 // Background colors // 
+$primary-background-color: white;
 $navbar-background-color: #5f8af2;
-$hero-background-color: linear-gradient(#434BE7, #545ce7);
+$button-background-color: #3a6adb;
+$hero-background-color: linear-gradient(#434BE7, #5f1dec);
+$open-pill-color: #00A34B33;
+$closed-color: #0000001A;
+$highlight-color: #FFB800;
+$form-background-color: #0248d309;
+$sidebar-background-color: #565de7;
+$modal-background-color: rgb(19, 24, 44, 0.5);
