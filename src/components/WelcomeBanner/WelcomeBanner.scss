@@ -24,10 +24,17 @@
         border-right: solid 3px $cursor-color;
         animation: animated-text 2s steps(19,end) 1s 1 normal both,
         animated-cursor 600ms steps(19,end);
-      
+
         @keyframes animated-text{
             from{width: 0rem;}
-            to{width: 31rem;}
+            to{width: 23rem;}
+        }
+
+        @include tablet {
+            @keyframes animated-text{
+                from{width: 0rem;}
+                to{width: 31rem;}
+            }
         }
 
         @keyframes animated-cursor{
