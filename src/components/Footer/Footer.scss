@@ -16,7 +16,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        gap: 3rem;
+        gap: 2rem;
 
         @include tablet{
             flex-direction: row;
@@ -65,18 +65,17 @@
     }
 
     &__icon {
-        height: 5rem;
+        height: 4rem;
 
         @include tablet {
-            height: 4rem;
+            height: 3.75rem;
         }
 
-
         &--apple{
-            height: 3.5rem;
+            height: 2.75rem;
 
             @include tablet {
-                height: 3rem;
+                height: 2.9rem;
             }
         }
     }

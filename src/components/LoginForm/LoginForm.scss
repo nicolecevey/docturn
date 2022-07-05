@@ -6,7 +6,11 @@
     flex-direction: column;
     align-items: center;
     margin-top: 2rem;
-    margin-bottom: 5rem;
+    margin-bottom: 3rem;
+
+    @include tablet {
+        margin-bottom: 5rem;
+    }
     
     &__title {
         margin-bottom: 2rem;
