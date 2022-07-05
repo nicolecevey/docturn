@@ -2,16 +2,12 @@ import "./AddDocumentForm.scss";
 import { Link } from "react-router-dom";
 import { addDoc, collection, getFirestore }  from "firebase/firestore";
 import { useHistory } from "react-router-dom";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 function AddDocumentForm() {
   let history = useHistory()
 
   const [error, setError] = useState("");
-
-  const changeHandler = () => {
-    setError("")
-  }
 
   const submitHandler = (event) => {
     event.preventDefault();
@@ -66,7 +62,6 @@ function AddDocumentForm() {
               type="text" 
               className={error ? "error-input__add-document" : "add-form__input"} 
               name="title"
-              onKeyDown={changeHandler}
             ></input>
           </label>
           <p className="add-form__label add-form__label--status">Document Status<span className={error ? "add-form__label--error" : "add-form__label--hidden"}>*</span></p>
@@ -76,7 +71,6 @@ function AddDocumentForm() {
               name="status"
               value="Open"
               className="add-form__radio"
-              onClick={changeHandler}
             ></input>{" "}
             Open
             <input
@@ -84,7 +78,6 @@ function AddDocumentForm() {
               name="status"
               value="Closed"
               className="add-form__radio"
-              onClick={changeHandler}
             ></input>{" "}
             Closed
           </label>
@@ -94,7 +87,6 @@ function AddDocumentForm() {
               className={error ? "error-input__add-document" : "add-form__input"}
               type="number" 
               name="version"
-              onKeyDown={changeHandler}
             ></input>
           </label>
           <p className="add-form__label add-form__label--toReview">Waiting for your review<span className={error ? "add-form__label--error" : "add-form__label--hidden"}>*</span></p>
@@ -104,7 +96,6 @@ function AddDocumentForm() {
               name="toReview"
               value="Yes"
               className="add-form__radio"
-              onClick={changeHandler}
             ></input>{" "}
             Yes
             <input
@@ -112,7 +103,6 @@ function AddDocumentForm() {
               name="toReview"
               value="No"
               className="add-form__radio"
-              onClick={changeHandler}
             ></input>{" "}
             No
           </label>
@@ -122,7 +112,6 @@ function AddDocumentForm() {
               type="text" 
               className="add-form__input"
               name="reviewerName"
-              onKeyDown={changeHandler}
             ></input>
           </label>
           <label className="add-form__label"> Date Last Reviewed
@@ -130,7 +119,6 @@ function AddDocumentForm() {
               type="date" 
               name="dateLastReviewed"
               className={error ? "error-input__add-document" : "add-form__input"}
-              onClick={changeHandler}
             ></input>
           </label>
           <button type="submit" className="add-form__add-button">

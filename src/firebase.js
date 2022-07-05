@@ -15,29 +15,6 @@ const app = firebase.initializeApp ({
     measurementId: "G-DKBSJQS4KR"
   });
 
-// export const documentsRef = firebase
-//   .firestore()
-//   .collection("documents")
-//   .onSnapshot((snapshot) => {
-//     const data = snapshot.docs.map((doc) => ({
-//       id: doc.id,
-//       ...doc.data(),
-//     }));
-//     console.log("All data in 'documents' collection", data);
-//   });
-
 export const db = firebase.firestore();
-// export const data = db.collection("documents")
-//     .get()
-//     .then((querySnapshot) => {
-//         querySnapshot.forEach((doc) => {
-//             // doc.data() is never undefined for query doc snapshots
-//             console.log(doc.id, " => ", doc.data());
-//         });
-//     })
-//     .catch((error) => {
-//         console.log("Error getting documents: ", error);
-//     });
-
 export const auth = app.auth()
 export default app
