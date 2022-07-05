@@ -37,6 +37,12 @@ function SignupForm(props) {
     setLoading(false)
   };
 
+  function handleChange() {
+    setError("")
+    setEmailError("")
+    setPasswordError("")
+  }
+
     return (
       <div className="modal">
         <form className="signup-form" onSubmit={handleSignup}>
@@ -48,17 +54,19 @@ function SignupForm(props) {
             ></img>
           <h1 className="signup-form__title">Signup</h1>
           <input
-            type="text"
+            type="email"
             className={!emailError ? "signup-form__input " : "error-input"}
             placeholder="Email"
             name="email"
+            onClick={handleChange}
           ></input>
           {emailError && <p className="error">{emailError}</p>}
           <input
-            type="text"
+            type="password"
             className={!passwordError ? "signup-form__input " : "error-input"}
             placeholder="Password"
             name="password"
+            onClick={handleChange}
           ></input>
           {passwordError && <p className="error">{passwordError}</p>}
           <button type="submit" className="signup-form__button">
@@ -71,6 +79,7 @@ function SignupForm(props) {
               type="button"
               className="signup-form__link"
               disabled={loading}
+              onClick={() => onClick()}
             >
               Login
             </button>

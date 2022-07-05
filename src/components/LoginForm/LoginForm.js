@@ -39,12 +39,12 @@ function LoginForm() {
         <form onSubmit={handleLogin} className="login-form">
           <h1 className="login-form__title">Login</h1>
           <input 
-            type="text" 
+            type="email" 
             className={!error ? "login-form__input" : "error-input__login"} 
             placeholder="Email" name="email">
           </input>
           <input 
-            type="text" 
+            type="password" 
             className={!error ? "login-form__input" : ("error-input__login")} 
             placeholder="Password" 
             name="password">
