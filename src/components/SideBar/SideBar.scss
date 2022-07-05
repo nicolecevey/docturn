@@ -1,10 +1,9 @@
 @use "../../styles/partials/variables" as *;
+@use "../../styles/partials/mixins" as *;
 
 .sidebar {
-    width: 18.75rem;
+    width: 15rem;
     height: 100vh;
-    font-size: 1.75rem;
-    font-weight: 100;
     position: fixed;
     top: 0;
     right: -18.75rem;
@@ -13,6 +12,10 @@
     display: flex;
     flex-direction: column;
     transition: all 1s ease;
+
+    @include tablet {
+        width: 18.75rem;
+    }
 
     &.active {
         right: 0;
@@ -23,16 +26,25 @@
         height: 100%;
         flex-direction: column;
         list-style: none;
-        margin-top: 11rem;
-        margin-left: 3rem;
+        margin-top: 8rem;
+        margin-left: 2rem;
+
+        @include tablet{
+            margin-left: 3rem;
+            margin-top: 11rem;
+        }
     }
 
     &__list-item {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
         color: $secondary-font-color;
         display: flex;
         flex-direction: column;
         cursor: pointer;
+
+        @include tablet{
+            margin-bottom: 2rem;
+        }
 
         &:hover {
             font-weight: 500;
@@ -41,9 +53,16 @@
 
     &__logout {
         display: flex;
+        font-size: 1.5rem;
+        font-weight: 100;
         align-items: center;
         margin-bottom: 2rem;
-        margin-left: 3rem;
+        margin-left: 2rem;
+
+        @include tablet{
+            margin-left: 3rem;
+            font-size: 1.75rem;
+        }
 
         &:hover {
             font-weight: 500;

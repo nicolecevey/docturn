@@ -27,13 +27,6 @@
         align-self: center;
     }
 
-    &__pin-icon {
-        height: 3rem;
-        margin-top: -2.5rem;
-        opacity: 50%;
-        position: absolute;
-    }
-
     &__details{
         display: flex;
         flex-direction: column;
@@ -86,6 +79,8 @@
         text-align: center;
         border-radius: 4px;
         padding: .25rem .75rem;
+        font-size: 1rem;
+        font-weight: 500;
 
         &--open {
             background-color: $open-pill-color;
@@ -99,8 +94,13 @@
     }
 
     &__review {
-        padding: .25rem .75rem;
+        padding: .125rem .75rem;
         border-radius: 4px;
+        font-size: 1rem;
+        font-weight: 500;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background-color: $highlight-color;
         color: $highlight-font-color;
     }

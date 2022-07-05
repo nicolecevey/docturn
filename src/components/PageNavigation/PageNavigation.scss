@@ -4,7 +4,7 @@
 .navbar {
     display: flex;
     align-items: center;
-    height: 6rem;
+    height: 5rem;
     padding: 1rem 2rem;
     background-color: $navbar-background-color;
     justify-content: space-between;
@@ -13,6 +13,10 @@
     z-index: 998;
     color: $secondary-font-color;
     overflow: hidden;
+
+    @include tablet {
+        height: 6rem;
+    }
 
     @include desktop {
         padding: 1rem 5rem;
