@@ -31,12 +31,14 @@ function SideBar({ menuOpen, setMenuOpen }) {
           </Link>
         </li>
         <li className="sidebar__list-item" onClick={() => toggleMenu()}>
-          <Link to="/documents/add" className="sidebar__link">
-            Add Document
+          <Link to="/documents" className="sidebar__link">
+            Documents
           </Link>
         </li>
         <li className="sidebar__list-item" onClick={() => toggleMenu()}>
-          Contact
+          <Link to="/documents/add" className="sidebar__link">
+            Add Document
+          </Link>
         </li>
       </ul>
       <div className="sidebar__logout">
