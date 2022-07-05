@@ -24,19 +24,33 @@ function EditDocumentForm() {
 
   async function editDocument(event) {
     event.preventDefault();
+    const title = event.target.title.value;
+    const version = event.target.version.value;
+
     const db = getFirestore();
     const documentRef = doc(db, "documents", id)
 
-    await updateDoc(documentRef, {
-      title: event.target.title.value,
-      status: event.target.status.value,
-      version: event.target.version.value,
-      toReview: event.target.toReview.value,
-      reviewerName: event.target.reviewerName.value,
-      dateLastReviewed: event.target.dateLastReviewed.value
-    })
-    history.push("/documents")
+    if (
+      !title ||
+      !version
+    ) {
+      setError("Please fill out all highlighted fields.")
+    } else if (error === "") {
+      await updateDoc(documentRef, {
+        title: event.target.title.value,
+        status: event.target.status.value,
+        version: event.target.version.value,
+        toReview: event.target.toReview.value,
+        reviewerName: event.target.reviewerName.value,
+        dateLastReviewed: event.target.dateLastReviewed.value
+      })
+      history.push("/documents")
+    }
   };
+
+  const changeHandler = () => {
+    setError("")
+  }
 
   return (
     <section className="edit-form">
@@ -50,9 +64,10 @@ function EditDocumentForm() {
             Document Title
             <input 
               type="text" 
-              className="edit-form__input" 
+              className={error ? "error-input__edit-document" : "edit-form__input"}
               name="title"
               placeholder={document.title}
+              onKeyDown={changeHandler}
             ></input>
           </label>
           <p className="edit-form__label">Document Status</p>
@@ -63,6 +78,7 @@ function EditDocumentForm() {
               value="Open"
               className="edit-form__radio"
               defaultChecked={document.status}
+              onClick={changeHandler}
             ></input>{" "}
             Open
             <input
@@ -71,16 +87,18 @@ function EditDocumentForm() {
               value="Closed"
               className="edit-form__radio"
               defaultChecked={!document.status}
+              onClick={changeHandler}
             ></input>{" "}
             Closed
           </label>
           <label className="edit-form__label">
             Version Number
             <input 
-              className="edit-form__input" 
+              className={error ? "error-input__edit-document" : "edit-form__input"}
               type="number" 
               name="version"
               placeholder={document.version}
+              onKeyDown={changeHandler}
             ></input>{" "}
           </label>
           <p className="edit-form__label">Waiting for your review</p>
@@ -91,6 +109,7 @@ function EditDocumentForm() {
               value="yes"
               className="edit-form__radio"
               defaultChecked={document.toReview}
+              onClick={changeHandler}
             ></input>{" "}
             Yes
             <input
@@ -99,16 +118,18 @@ function EditDocumentForm() {
               value="no"
               className="edit-form__radio"
               defaultChecked={!document.toReview}
+              onClick={changeHandler}
             ></input>{" "}
             No
           </label>
           <label className="edit-form__label">
-            Reviewer Name:
+            Reviewer Name (please leave empty if not being reviewed)
             <input 
               type="text" 
               className="edit-form__input"
               name="reviewerName"
               placeholder={document.reviewerName === undefined ? "No current reviewer" : document.reviewerName }
+              onKeyDown={changeHandler}
             ></input>{" "}
           </label>
           <label className="edit-form__label"> Date Last Reviewed
@@ -117,6 +138,7 @@ function EditDocumentForm() {
               name="dateLastReviewed"
               className="edit-form__input"
               defaultValue={document.dateLastReviewed}
+              onClick={changeHandler}
             ></input>{" "}
           </label>
           <button type="submit" className="edit-form__edit-button">

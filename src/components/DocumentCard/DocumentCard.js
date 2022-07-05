@@ -4,7 +4,6 @@ import documentIcon from "../../assets/icons/document-icon.svg";
 import reviewIcon from "../../assets/icons/review-icon.svg"
 import { Link } from "react-router-dom";
 import DeleteModal from "../DeleteModal/DeleteModal";
-import pinIcon from "../../assets/icons/pin.svg";
 
 function DocumentCard({
   id,
@@ -38,7 +37,6 @@ function DocumentCard({
         ${(status === "closed" || status === "Closed") && "document-card--closed-border"}
         `} 
       id={id}>
-      <img className="document-card__pin-icon" src={pinIcon} alt="Pin Icon"></img>
       <div className="document-card__col">
         <div className="document-card__pills">
           <span className={`document-card__status ${(status === "open" || status === "Open") ? "document-card__status--open" : "document-card__status--closed"}`}>{status}</span>
