@@ -144,6 +144,7 @@ function EditDocumentForm() {
           <button type="submit" className="edit-form__edit-button">
             Edit
           </button>
+          {error && <p className="error">{error}</p>}
         </form>
       </div>
     </section>
