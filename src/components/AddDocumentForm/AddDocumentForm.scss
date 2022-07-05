@@ -9,7 +9,6 @@
     align-items: center;
 
     &__title {
-        font-size: 3rem;
         margin: 2rem 0;
         color: $primary-font-color;
 
@@ -38,10 +37,14 @@
 
     &__container {
         display: flex;
-        padding:  3rem 3rem 2rem 3rem;
+        padding:  3rem 1rem 2rem 1rem;
         border-radius: 5px;
         box-shadow: $box-shadow;
         background-color: $form-background-color;
+
+        @include tablet {
+            padding:  3rem 3rem 2rem 3rem;
+        }
     }
 
     &__form {
