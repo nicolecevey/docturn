@@ -12,12 +12,14 @@
 
     @include tablet {
         height: 30rem;
-        gap: 10rem;
+    }
+
+    @include desktop {
         padding-left: 5rem;
     }
 
     &__title {
-        font-size: 2.4rem;
+        font-size: 2.3rem;
         color: $secondary-font-color;
         white-space: nowrap;
         overflow: hidden;  
@@ -30,13 +32,6 @@
             to{width: 23rem;}
         }
 
-        @include tablet {
-            @keyframes animated-text{
-                from{width: 0rem;}
-                to{width: 31rem;}
-            }
-        }
-
         @keyframes animated-cursor{
             from{border-right-color: $cursor-color;}
             to{border-right-color: transparent;}
@@ -44,6 +39,10 @@
 
         @include tablet {
             font-size: 3.25rem;
+            @keyframes animated-text{
+                from{width: 0rem;}
+                to{width: 31rem;}
+            }
         }
     }
 }

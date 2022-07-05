@@ -14,7 +14,7 @@
     color: $secondary-font-color;
     overflow: hidden;
 
-    @include tablet {
+    @include desktop {
         padding: 1rem 5rem;
     }
 
