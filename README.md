@@ -2,9 +2,12 @@
 
 With the help of DocTurn, you can easily keep track of the status of your documents. You will never again need to sift through your emails in a panic to find out what the most recent version of a document is.
 
-![Screenshot of DocTurn app](/.demo/Sizzy-iPad-Pro-11.png)
+<div align="center">
+   <img src="./demo/Sizzy-iPad-Pro-11.png" height="300rem" alt="DocTurn Ipad demo" display="flex"/>
+   </div>
 
-In fast paced environments like a corporate law firm, every second of the day counts. While working as a legal assistant to five lawyers at one of Canada’s busiest corporate firms, I noticed that my lawyers spent considerable amount of time on version control of documents, which is why I created DocTurn. DocTurn is version control management application that helps keep track of: what documents you are currently working on, what version is the latest, who is currently reviewing it, and when it was last reviewed. This application alleviates a pain point for busy business professionals who review many documents on a regularly basis, and it has easy to use UI for people who don't have the time to learn a new application.
+
+In fast paced environments like a corporate law firm, every second of the day counts. While working as a legal assistant to five lawyers at one of Canada’s busiest corporate firms, I noticed that my lawyers spent considerable amount of time on version control of documents, which is why I created DocTurn. DocTurn is version control management application that helps keep track of: what documents you are currently working on, what version is the latest, who is currently reviewing it, and when it was last reviewed. This application alleviates a pain point for busy business professionals who review many documents on a regularly basis, and has easy to use UI for people who don't have the time to learn a new application.
 
 # Installation
 
@@ -21,10 +24,18 @@ Follow these steps to run a local instance of DocTurn:
    ```
 3. Set environment variables:  
    
-   Rename `.env_sample` to `.env` and change the placeholder value to the port you set for the server.
+   Rename `.env_sample` to `.env` and update the environment variables to match your desired config
+
    ```shell
-   REACT_APP_API_URL=http://localhost:<PORT SET IN /server/.env>
+      REACT_APP_API_KEY=<API KEY>
+      REACT_APP_AUTH_DOMAIN=<AUTH DOMAIN>
+      REACT_APP_PROJECT_ID=<PROJECT ID>
+      REACT_APP_STORAGE_BUCKET=<STORAGE BUCKET>
+      REACT_APP_MESSAGING_SENDING_ID=<MESSAGING SENDING ID>
+      REACT_APP_APP_ID=<APP ID>
+      REACT_APP_MEASUREMENT_ID=<MEASUREMENT ID>
    ```
+
 4. Start the React app:
     ```bash
     $ npm start
