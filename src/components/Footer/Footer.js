@@ -20,6 +20,7 @@ function Footer() {
                         <a 
                             href="https://www.facebook.com"
                             target="_blank"
+                            rel="noreferrer"
                             ><img 
                                 src={facebookIcon} 
                                 alt="Facebook icon"
@@ -29,6 +30,7 @@ function Footer() {
                         <a 
                             href="https://www.instagram.com"
                             target="_blank"
+                            rel="noreferrer"
                             ><img 
                                 src={instagramIcon} 
                                 alt="Instagram icon"
@@ -38,6 +40,7 @@ function Footer() {
                         <a 
                             href="https://www.twitter.com"
                             target="_blank"
+                            rel="noreferrer"
                             ><img 
                                 src={twitterIcon} 
                                 alt="Twitter icon"

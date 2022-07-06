@@ -8,7 +8,6 @@ function LoginForm() {
   const {login} = useAuth()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [error, setError] = useState('')
-  const [ loading, setLoading ] = useState(false)
   const history = useHistory()
 
    async function handleLogin(event) {
@@ -22,13 +21,11 @@ function LoginForm() {
 
     try {
       setError("")
-      setLoading(true)
       await login(event.target.email.value, event.target.password.value)
       history.push("/documents")
     } catch {
       setError("Failed to log in.")
     }
-    setLoading(false)
   };
 
   const toggleModal = () => {

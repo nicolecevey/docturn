@@ -3,13 +3,14 @@ import "firebase/compat/auth"
 import "firebase/compat/firestore"
 
 const app = firebase.initializeApp ({
-    apiKey: "AIzaSyB0giU0vr_kaswf_9ES8vDom0cC7N5mC4Y",
-    authDomain: "docturn-55f85.firebaseapp.com",
-    projectId: "docturn-55f85",
-    storageBucket: "docturn-55f85.appspot.com",
-    messagingSenderId: "49859955007",
-    appId: "1:49859955007:web:a8ae81182b80121f33eb8a",
-    measurementId: "G-DKBSJQS4KR"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDING_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID
+
   });
 
 export const db = firebase.firestore();

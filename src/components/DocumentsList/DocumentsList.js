@@ -19,6 +19,17 @@ function DocumentsList() {
   const [filterReview, setFilterReview] = useState(false);
 
   useEffect(() => {
+
+    function findNumDocumentsToReviewAndOpen() {
+      const data = [];
+      allDocuments.forEach((doc) => {
+        if (doc.toReview === "Yes" && doc.status === "Open") {
+          data.push(doc);
+        }
+      });
+      setDocuments(data);
+    }
+    
     const colRef = collection(db, "documents");
     const q = query(colRef, orderBy("dateLastReviewed", "desc"));
     onSnapshot(q, (snapshot) => {
@@ -92,17 +103,7 @@ function DocumentsList() {
         );
       });
     }
-  }, [filterOpen, filterReview]);
- 
-  // function findNumDocumentsOpen() {
-  //   let documentsOpen = [];
-  //   documents.forEach((doc) => {
-  //     if (doc.status === "open" || doc.status === "Open") {
-  //       documentsOpen.push(doc.status);
-  //     }
-  //   });
-  //   return documentsOpen.length;
-  // }
+  }, [filterOpen, filterReview, allDocuments]);
 
   function findNumDocumentsToReview() {
     let toReview = [];
@@ -112,16 +113,6 @@ function DocumentsList() {
       }
     });
     return toReview.length;
-  }
-
-  function findNumDocumentsToReviewAndOpen() {
-    const data = [];
-    allDocuments.forEach((doc) => {
-      if (doc.toReview === "Yes" && doc.status === "Open") {
-        data.push(doc);
-      }
-    });
-    setDocuments(data);
   }
 
   function findOpenDocLength() {

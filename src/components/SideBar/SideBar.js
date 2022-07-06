@@ -5,7 +5,7 @@ import { useAuth } from "../../Contexts/AuthContext";
 import { useState } from "react";
 
 function SideBar({ menuOpen, setMenuOpen }) {
-  const {currentUser,logout} = useAuth()
+  const {logout} = useAuth()
   const [error, setError] = useState("")
   const history = useHistory()
   const toggleMenu = () => {
@@ -42,7 +42,7 @@ function SideBar({ menuOpen, setMenuOpen }) {
         </li>
       </ul>
       <div className="sidebar__logout">
-        <img src={logoutIcon} className="sidebar__logout-icon"></img>
+        <img src={logoutIcon} className="sidebar__logout-icon" alt="Logout icon"></img>
         <Link
           to="/"
           className="sidebar__link sidebar__link--logout"
