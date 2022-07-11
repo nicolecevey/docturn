@@ -111,7 +111,7 @@ function EditDocumentForm() {
             <input
               type="radio"
               name="toReview"
-              value="yes"
+              value="Yes"
               className="edit-form__radio"
               defaultChecked={document.toReview}
               onClick={changeHandler}
@@ -120,7 +120,7 @@ function EditDocumentForm() {
             <input
               type="radio"
               name="toReview"
-              value="no"
+              value="No"
               className="edit-form__radio"
               defaultChecked={!document.toReview}
               onClick={changeHandler}
