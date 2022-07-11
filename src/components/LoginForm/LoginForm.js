@@ -5,6 +5,8 @@ import SignupForm from "../SignupForm/SignupForm";
 import { useHistory } from "react-router-dom";
 
 function LoginForm() {
+  // Component to log in to site
+  // Once user successfully logs in, the user gets redirected to documents page
   const {login} = useAuth()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [error, setError] = useState('')
@@ -21,7 +23,8 @@ function LoginForm() {
 
     try {
       setError("")
-      await login(event.target.email.value, event.target.password.value)
+      await login(email, password)
+      // Once authentication is successful, redirect user
       history.push("/documents")
     } catch {
       setError("Failed to log in.")
@@ -29,6 +32,7 @@ function LoginForm() {
   };
 
   const toggleModal = () => {
+    // Toggles signup modal
     setIsModalOpen(!isModalOpen);
   }
     return (

@@ -6,23 +6,26 @@ import { useEffect, useState } from "react";
 import { db } from "../../firebase";
 
 function EditDocumentForm() {
+  // Form to edit a document and changes will be saved to database
   let history = useHistory()
   const { id } = useParams()
   const [error, setError] = useState('');
   const [document, setDocument] = useState([])
 
   useEffect(() => {
+    // Get document from database by id
+    // Need set document data so that it can be displayed as placeholder
     try {
       db.collection('documents').doc(id).get()
       .then(snapshot => setDocument(snapshot.data()))
     } catch (error) {
       const { message } = error;
       setError(message);
-        console.log(error);
     }
   }, [id]);
 
   async function editDocument(event) {
+    // Edit document on click on button
     event.preventDefault();
     const title = event.target.title.value;
     const version = event.target.version.value;
@@ -44,11 +47,13 @@ function EditDocumentForm() {
         reviewerName: event.target.reviewerName.value,
         dateLastReviewed: event.target.dateLastReviewed.value
       })
+      // Return to documents page when successfully updated
       history.push("/documents")
     }
   };
 
   const changeHandler = () => {
+    // User should be able to click on form input to remove error state
     setError("")
   }
 

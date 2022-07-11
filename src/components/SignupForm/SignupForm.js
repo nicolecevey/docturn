@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useAuth } from "../../Contexts/AuthContext"
 
 function SignupForm(props) {
+  // Component that allows users to sign up with password and email
   const {onClick} = props;
   const {signup} = useAuth()
   const [error, setError] = useState("")
@@ -12,6 +13,7 @@ function SignupForm(props) {
   const [loading, setLoading] = useState(false)
 
   async function handleSignup(event) {
+    // When user enters an email and password that does not trigger error handlers, they will successfully signup
     event.preventDefault();
     const email = event.target.email.value
     const password = event.target.password.value;
@@ -38,6 +40,7 @@ function SignupForm(props) {
   };
 
   function handleChange() {
+    // User can clear error state by clicking on input fields
     setError("")
     setEmailError("")
     setPasswordError("")

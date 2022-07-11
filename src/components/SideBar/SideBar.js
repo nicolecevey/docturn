@@ -5,6 +5,9 @@ import { useAuth } from "../../Contexts/AuthContext";
 import { useState } from "react";
 
 function SideBar({ menuOpen, setMenuOpen }) {
+  // Sidebar opens on click of hamburger menu
+  // Contains links that users can navigate to
+
   const {logout} = useAuth()
   const [error, setError] = useState("")
   const history = useHistory()
@@ -13,6 +16,7 @@ function SideBar({ menuOpen, setMenuOpen }) {
   };
 
   async function handleLogout() {
+    // Logout users on click of logout link and return users to home page
     try {
       await logout()
       history.push("/")

@@ -8,16 +8,18 @@ import {
   collection,
   query,
   orderBy,
-  where
+  where,
 } from "firebase/firestore";
 
 function DocumentsList() {
+  // Component that shows all document cards and filters them according to what button user clicks
   const [documents, setDocuments] = useState([]);
   const [allDocsLength, setAllDocsLength] = useState(null);
   const [isOpenOn, setIsOpenOn] = useState(false);
   const [isReviewOn, setIsReviewOn] = useState(false);
 
   const fetchAllDocuments = () => {
+    // Get all documents
     const colRef = collection(db, "documents");
     const q = query(colRef, orderBy("dateLastReviewed", "desc"));
     onSnapshot(q, (snapshot) => {
@@ -37,13 +39,13 @@ function DocumentsList() {
   };
 
   const fetchAllOpenDocuments = () => {
+    //Fetch only open documents
     const colRef = collection(db, "documents");
     const q = query(
       colRef,
       where("status", "==", "Open"),
       orderBy("dateLastReviewed", "desc")
     );
-    //Fetch only open documents
     onSnapshot(q, (snapshot) => {
       setDocuments(
         snapshot.docs.map((doc) => ({
@@ -56,6 +58,7 @@ function DocumentsList() {
   };
 
   const fetchAllReviewDocuments = () => {
+    // Fetch only documents to review
     const colRef = collection(db, "documents");
     const q = query(
       colRef,
@@ -73,6 +76,7 @@ function DocumentsList() {
   };
 
   const fetchAllOpenAndReviewDocuments = () => {
+    // Fetch all open and all review documents
     const colRef = collection(db, "documents");
     const q = query(
       colRef,
@@ -91,15 +95,18 @@ function DocumentsList() {
     });
   };
 
-  //1. Component did mount, set documents to all documents by default
   useEffect(() => {
     if (isOpenOn && !isReviewOn) {
+      // Fetch all open documents
       fetchAllOpenDocuments();
     } else if (isReviewOn && !isOpenOn) {
+      // Fetch all review documents
       fetchAllReviewDocuments();
     } else if (isReviewOn && isOpenOn) {
+      // Fetch all open and all review documents
       fetchAllOpenAndReviewDocuments();
     } else {
+      // Fetch all open documents
       fetchAllDocuments();
     }
   }, [isOpenOn, isReviewOn]);

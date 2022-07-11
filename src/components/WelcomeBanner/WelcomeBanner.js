@@ -1,6 +1,7 @@
 import "./WelcomeBanner.scss";
 
 function WelcomeBanner(){
+    // Banner that welcomes user upon successful login on documents page
 
     return(
         <main className="welcome-banner">
