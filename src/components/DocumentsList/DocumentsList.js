@@ -8,116 +8,101 @@ import {
   collection,
   query,
   orderBy,
-  where,
+  where
 } from "firebase/firestore";
 
 function DocumentsList() {
   const [documents, setDocuments] = useState([]);
-  const [allDocuments, setAllDocuments] = useState([]);
-  const [toReviewDocuments, setReviewDocuments] = useState([]);
-  const [filterOpen, setFilterOpen] = useState(false);
-  const [filterReview, setFilterReview] = useState(false);
+  const [allDocsLength, setAllDocsLength] = useState(null);
+  const [isOpenOn, setIsOpenOn] = useState(false);
+  const [isReviewOn, setIsReviewOn] = useState(false);
 
-  useEffect(() => {
-
-    function findNumDocumentsToReviewAndOpen() {
-      const data = [];
-      allDocuments.forEach((doc) => {
-        if (doc.toReview === "Yes" && doc.status === "Open") {
-          data.push(doc);
-        }
-      });
-      setDocuments(data);
-    }
-    
+  const fetchAllDocuments = () => {
     const colRef = collection(db, "documents");
     const q = query(colRef, orderBy("dateLastReviewed", "desc"));
     onSnapshot(q, (snapshot) => {
-      setAllDocuments(
+      const allDocs = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      const reviewDocs = allDocs.filter((doc) => doc.toReview === "Yes");
+      const openDocs = allDocs.filter((doc) => doc.status === "Open");
+      setDocuments(allDocs);
+      setAllDocsLength({
+        allDocuments: allDocs.length,
+        reviewDocs: reviewDocs.length,
+        openDocs: openDocs.length,
+      });
+    });
+  };
+
+  const fetchAllOpenDocuments = () => {
+    const colRef = collection(db, "documents");
+    const q = query(
+      colRef,
+      where("status", "==", "Open"),
+      orderBy("dateLastReviewed", "desc")
+    );
+    //Fetch only open documents
+    onSnapshot(q, (snapshot) => {
+      setDocuments(
         snapshot.docs.map((doc) => ({
           ...doc.data(),
           id: doc.id,
         }))
       );
     });
+    return;
+  };
 
-    if(filterOpen && filterReview && filterOpen){
-      return findNumDocumentsToReviewAndOpen();
-    }
-
-    if(filterOpen === false && filterReview === false) {
-      const q = query(colRef, orderBy("dateLastReviewed", "desc"));
-      onSnapshot(q, (snapshot) => {
-        setDocuments(
-          snapshot.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }))
-        );
-      });
-      const qReview = query(colRef, orderBy("dateLastReviewed", "desc"));
-      onSnapshot(qReview, (snapshot) => {
-        setReviewDocuments(
-          snapshot.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }))
-        );
-      });
-    } else if (filterOpen) {
-      const qAll = query(colRef, orderBy("dateLastReviewed", "desc"));
-      onSnapshot(qAll, (snapshot) => {
-        setAllDocuments(
-          snapshot.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }))
-        );
-      });
-      const q = query(colRef,where("status", "==", "Open"), orderBy("dateLastReviewed", "desc"));
-      onSnapshot(q, (snapshot) => {
-        setDocuments(
-          snapshot.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }))
-        );
-      });
-    } else if (filterReview) {
-      const qAll = query(colRef, orderBy("dateLastReviewed", "desc"));
-      onSnapshot(qAll, (snapshot) => {
-        setAllDocuments(
-          snapshot.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }))
-        );
-      });
-      const q = query(colRef,where("toReview", "==", "Yes"), orderBy("dateLastReviewed", "desc"));
-      onSnapshot(q, (snapshot) => {
-        setReviewDocuments(
-          snapshot.docs.map((doc) => ({
-            ...doc.data(),
-            id: doc.id,
-          }))
-        );
-      });
-    }
-  }, [filterOpen, filterReview, allDocuments]);
-
-  function findNumDocumentsToReview() {
-    let toReview = [];
-    toReviewDocuments.forEach((doc) => {
-      if (doc.toReview === "yes" || doc.toReview === "Yes") {
-        toReview.push(doc.toReview);
-      }
+  const fetchAllReviewDocuments = () => {
+    const colRef = collection(db, "documents");
+    const q = query(
+      colRef,
+      where("toReview", "==", "Yes"),
+      orderBy("dateLastReviewed", "desc")
+    );
+    onSnapshot(q, (snapshot) => {
+      setDocuments(
+        snapshot.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }))
+      );
     });
-    return toReview.length;
-  }
+  };
 
-  function findOpenDocLength() {
-    return allDocuments.filter((doc)=>doc.status === 'Open').length
-  }
+  const fetchAllOpenAndReviewDocuments = () => {
+    const colRef = collection(db, "documents");
+    const q = query(
+      colRef,
+      where("status", "==", "Open"),
+      orderBy("dateLastReviewed", "desc")
+    );
+    onSnapshot(q, (snapshot) => {
+      const openDocs = snapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      const openAndReviewDocs = openDocs.filter(
+        (doc) => doc.toReview.toLowerCase() === "yes"
+      );
+      setDocuments(openAndReviewDocs);
+    });
+  };
+
+  //1. Component did mount, set documents to all documents by default
+  useEffect(() => {
+    if (isOpenOn && !isReviewOn) {
+      fetchAllOpenDocuments();
+    } else if (isReviewOn && !isOpenOn) {
+      fetchAllReviewDocuments();
+    } else if (isReviewOn && isOpenOn) {
+      fetchAllOpenAndReviewDocuments();
+    } else {
+      fetchAllDocuments();
+    }
+  }, [isOpenOn, isReviewOn]);
 
   return (
     <>
@@ -126,22 +111,43 @@ function DocumentsList() {
           <div className="documents-container__filter-row">
             <p className="documents-container__filter-title">Filter</p>
             <div className="documents-container__information">
-              <p 
-                className={`documents-container__text--all ${(filterOpen === false && filterReview === false) && "documents-container__text-highlight"}`}
-                onClick={() => setFilterOpen(filterOpen === false) && setFilterReview(filterReview === false)}
-              >All <span>({filterOpen || filterReview ? allDocuments.length : documents.length})</span></p>
               <p
-                onClick={() => setFilterOpen(!filterOpen)}
-                className={`documents-container__text--open ${filterOpen && "documents-container__text-highlight"}`}
+                className={`documents-container__text--all ${
+                  isOpenOn === false &&
+                  isReviewOn === false &&
+                  "documents-container__text-highlight"
+                }`}
+                onClick={() => {
+                  setIsOpenOn(false);
+                  setIsReviewOn(false);
+                  fetchAllDocuments();
+                }}
+              >
+                All <span>({allDocsLength?.allDocuments})</span>
+              </p>
+              <p
+                onClick={() => {
+                  setIsOpenOn(!isOpenOn);
+                  fetchAllOpenDocuments();
+                }}
+                className={`documents-container__text--open ${
+                  isOpenOn && "documents-container__text-highlight"
+                }`}
               >
                 Open
-              <span className="documents-container__filter">{`(${findOpenDocLength()})`}</span>
+                <span className="documents-container__filter">{`(${allDocsLength?.openDocs})`}</span>
               </p>
-              <p 
-                onClick={() => setFilterReview(!filterReview)}
-                className={`documents-container__text--to-review ${filterReview && "documents-container__text-highlight"}`}
-              >To review
-              <span className="documents-container__filter">{`(${findNumDocumentsToReview()})`}</span>
+              <p
+                className={`documents-container__text--to-review ${
+                  isReviewOn && "documents-container__text-highlight"
+                }`}
+                onClick={() => {
+                  setIsReviewOn(!isReviewOn);
+                  fetchAllReviewDocuments();
+                }}
+              >
+                To review
+                <span className="documents-container__filter">{`(${allDocsLength?.reviewDocs})`}</span>
               </p>
             </div>
           </div>
