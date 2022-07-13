@@ -33,6 +33,7 @@ function SignupForm(props) {
       setError("")
       setLoading(true)
       await signup(email,password)
+      onClick()
     } catch {
       setError("Failed to signup.")
     }

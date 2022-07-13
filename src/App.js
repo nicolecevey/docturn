@@ -25,7 +25,6 @@ function App() {
             <PrivateRoute path="/documents" exact component={DocumentsPage} />
             <PrivateRoute path="/documents/add" component={AddDocumentPage} />
             <PrivateRoute path="/document/:id/edit" component={EditDocumentPage} />
-            {/* <AuthRoute authenticated={this.state.authenticated} path="/documents" render={props => <DocumentsPage {...props}/>}/> */}
           </Switch>
           <Footer />
         </AuthProvider>
