@@ -9,6 +9,8 @@ With the help of DocTurn, you can easily keep track of the status of your docume
 
 In fast paced environments like a corporate law firm, every second of the day counts. While working as a legal assistant to five lawyers at one of Canada’s busiest corporate firms, I noticed that my lawyers spent considerable amount of time on version control of documents, which is why I created DocTurn. DocTurn is version control management application that helps keep track of: what documents you are currently working on, what version is the latest, who is currently reviewing it, and when it was last reviewed. This application alleviates a pain point for busy business professionals who review many documents on a regularly basis, and has easy to use UI for people who don't have the time to learn a new application.
 
+Try out DocTurn here: https://docturn.vercel.app/
+
 # Installation
 
 Follow these steps to run a local instance of DocTurn:  
