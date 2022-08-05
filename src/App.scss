@@ -17,12 +17,12 @@ h1 {
     letter-spacing: 0;
 
     @include tablet {
-        font-size: 3rem;
+        font-size: 2.75rem;
     }
 }
 
 h3 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     letter-spacing: .75px;
     font-weight: 500;
 }
@@ -33,7 +33,7 @@ h4 {
     font-weight: 700;}
 
 p {
-    font-size: 1.25rem;
+    font-size: 1.125rem;
 }
 
 li {
