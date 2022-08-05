@@ -11,6 +11,8 @@ In fast paced environments like a corporate law firm, every second of the day co
 
 Try out DocTurn here: https://docturn.vercel.app/
 
+Try out DocTurn here: https://docturn.vercel.app/
+
 # Installation
 
 Follow these steps to run a local instance of DocTurn:  
